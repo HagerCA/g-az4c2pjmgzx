@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Library · My Healing · The Alchemy Lab</title>
+<!-- Built 2026-10-22 on Christopher's ask. Not yet published. If published: unguessable address, noindex, robots Disallow, like the rest of My Healing. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="author" content="Christopher Hager">
+<meta name="theme-color" content="#1B0C20">
+<style>
+@font-face{font-family:'Space Grotesk';src:url('./fonts/SpaceGrotesk-a57c9413.woff2') format('woff2');font-weight:300 700;font-display:swap;}
+@font-face{font-family:'DM Sans';src:url('./fonts/DMSans-f6298972.woff2') format('woff2');font-weight:100 1000;font-display:swap;}
+@font-face{font-family:'Instrument Serif';src:url('./fonts/InstrumentSerif-99cc6edf.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Instrument Serif';src:url('./fonts/InstrumentSerif-fa1a1a83.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;}
+
+:root{
+  --crown:#1B0C20; --crown-2:#2A1130; --card:#22102A; --ink:#EFE7DA; --dim:rgba(239,231,218,.74); --faint:rgba(239,231,218,.52);
+  --gold:#D9A648; --gold-2:#A57626; --teal:#5FC0AE; --blue:#8FB0F0; --rose:#E58BB0; --emerald:#7FD6A2; --violet:#AC9FF2; --heart:#E8735A;
+  --display:'Instrument Serif',Georgia,serif; --head:'Space Grotesk',"Helvetica Neue",Arial,sans-serif; --sans:'DM Sans',-apple-system,"Segoe UI",Roboto,sans-serif;
+  --spectrum:linear-gradient(to right,#C8242B 0%,#E8732A 17%,#F2C230 33%,#3FA86A 50%,#2C5FC4 67%,#5A47C2 83%,#9B5FD0 100%);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--crown);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.7;}
+a{color:inherit;}
+button{font:inherit;color:inherit;}
+.wide{max-width:1180px;margin:0 auto;padding:0 26px;}
+.narrow{max-width:820px;}
+.dots{position:relative;}
+.dots::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(239,231,218,.08) 1px,transparent 1.2px);background-size:7px 7px;}
+.dots>*{position:relative;z-index:1;}
+[hidden]{display:none !important;}
+
+/* ── Crumb ── */
+.crumb{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:16px 0;font-family:var(--head);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);}
+.crumb a{text-decoration:none;color:var(--gold);display:flex;align-items:center;gap:10px;}
+.crumb a:hover{color:#F2C46A;}
+.crumb img{width:20px;}
+
+/* ── Hero ── */
+.hero{text-align:center;padding:10px 0 64px;overflow:hidden;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(217,166,72,.16) 0%,transparent 60%),radial-gradient(ellipse 120% 100% at 50% 50%,#1B0C20 0%,#21102E 55%,#2B1A5C 125%);}
+.kicker{font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--teal);margin:0 0 16px;}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(3.2rem,10vw,6.6rem);line-height:.95;letter-spacing:-.02em;margin:0;color:#fff;}
+h1 em{font-style:italic;color:var(--gold);}
+.sub{font-family:var(--display);font-size:clamp(1.3rem,3.4vw,1.8rem);color:var(--teal);margin:14px 0 0;}
+.dek{max-width:34em;margin:22px auto 0;color:var(--dim);font-size:1.05rem;}
+.meta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px;}
+.chip{font-family:var(--head);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:30px;border:1px solid rgba(239,231,218,.18);color:var(--dim);background:rgba(27,12,32,.5);}
+.chip b{color:var(--gold);font-weight:700;}
+
+/* Hero art: the shelf */
+.shelf-art{width:min(380px,84vw);height:auto;display:block;margin:4px auto 18px;overflow:visible;}
+.shelf-art .glow{animation:breathe 6s ease-in-out infinite;transform-origin:190px 120px;}
+@keyframes breathe{0%,100%{opacity:.55;transform:scale(1);}50%{opacity:1;transform:scale(1.06);}}
+.shelf-art .lift{animation:lift 6s ease-in-out infinite;}
+@keyframes lift{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+
+/* Hero art: heart in the sun */
+.sun-art{width:min(300px,72vw);height:auto;display:block;margin:4px auto 16px;overflow:visible;}
+.sun-art .rays{animation:turn 60s linear infinite;transform-origin:150px 130px;}
+@keyframes turn{to{transform:rotate(360deg);}}
+.sun-art .beat{animation:beat 4.8s ease-in-out infinite;transform-origin:150px 134px;}
+@keyframes beat{0%,100%{transform:scale(1);}12%{transform:scale(1.06);}24%{transform:scale(1);}36%{transform:scale(1.04);}48%{transform:scale(1);}}
+
+/* ── The shelf ── */
+.shelf-wrap{padding:60px 0 40px;}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:18px;border-bottom:1px solid rgba(239,231,218,.12);padding-bottom:16px;margin-bottom:34px;}
+.sec-head h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.6vw,3rem);line-height:1.04;color:#fff;letter-spacing:-.01em;}
+.sec-head h2 em{color:var(--c,var(--gold));}
+.sec-head p{margin:6px 0 0;color:var(--dim);max-width:40em;font-size:1rem;}
+.eyebrow{font-family:var(--head);font-size:10.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--c,var(--gold));margin:0 0 10px;}
+.filters{display:flex;gap:8px;flex-wrap:wrap;}
+.fbtn{cursor:pointer;border:1px solid rgba(239,231,218,.16);background:transparent;color:var(--dim);font-family:var(--head);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:9px 14px;border-radius:30px;transition:all .2s;}
+.fbtn:hover{color:#fff;border-color:var(--gold);}
+.fbtn[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--crown);}
+
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:46px 30px;align-items:start;padding:10px 0 0;position:relative;}
+.stand{position:relative;padding-bottom:16px;}
+.stand::after{content:"";position:absolute;left:-16px;right:-16px;bottom:0;height:14px;border-radius:2px;background:linear-gradient(180deg,#5A3A22 0%,#3A2416 60%,#24160E 100%);box-shadow:0 16px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,220,170,.18);}
+.book .label i{display:block;font-style:normal;font-family:var(--head);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:7px;line-height:1.5;}
+.book .label i.done{color:var(--emerald);}
+.fav{position:absolute;left:10px;bottom:10px;z-index:2;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(27,12,32,.75);color:#F7D46A;font-size:14px;line-height:1;border:1px solid rgba(247,212,106,.5);}
+.plank{height:16px;margin-top:-4px;border-radius:3px;background:linear-gradient(180deg,#5A3A22 0%,#3A2416 60%,#24160E 100%);box-shadow:0 18px 30px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,220,170,.18);}
+.book{display:block;text-decoration:none;perspective:900px;cursor:pointer;}
+.book .cover{position:relative;aspect-ratio:2/3;border-radius:3px 7px 7px 3px;overflow:hidden;transform-origin:left center;transform:rotateY(-14deg);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;
+  box-shadow:10px 14px 28px rgba(0,0,0,.55),inset 6px 0 0 rgba(0,0,0,.28),inset 7px 0 0 rgba(255,255,255,.08);}
+.book:hover .cover,.book:focus-visible .cover{transform:rotateY(0) translateY(-10px);box-shadow:0 26px 50px rgba(0,0,0,.6),0 0 60px -16px var(--a),inset 6px 0 0 rgba(0,0,0,.28);}
+.book:focus-visible{outline:none;}
+.book .cover svg{position:absolute;inset:0;width:100%;height:100%;}
+.book .label{margin-top:16px;}
+.book .label small{display:block;font-family:var(--head);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--a);}
+.book .label b{display:block;font-family:var(--display);font-weight:400;font-size:1.5rem;line-height:1.1;color:#fff;margin-top:4px;}
+.book .label span{display:block;font-size:.9rem;color:var(--faint);margin-top:2px;}
+.ribbon{position:absolute;top:12px;right:-2px;font-family:var(--head);font-size:8.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:var(--crown);padding:5px 9px 5px 10px;border-radius:3px 0 0 3px;z-index:2;}
+.slot{aspect-ratio:2/3;border:1.5px dashed rgba(239,231,218,.14);border-radius:3px 7px 7px 3px;display:grid;place-items:center;text-align:center;padding:18px;color:var(--faint);font-family:var(--head);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;line-height:1.7;}
+.slot-wrap .label{margin-top:16px;visibility:hidden;}
+
+/* ── Book view ── */
+.book-hero .kicker{color:var(--heart);}
+.book-hero .sub{color:var(--gold);}
+.back{display:inline-flex;align-items:center;gap:8px;cursor:pointer;background:none;border:0;padding:0;font-family:var(--head);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+.back:hover{color:#F2C46A;}
+
+.lede-block{padding:64px 0 10px;}
+.whole{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start;}
+.whole p{margin:0 0 16px;color:var(--dim);}
+.whole p b{color:#fff;font-weight:600;}
+.whole .note-sm{font-size:.9rem;color:var(--faint);border-left:2px solid rgba(217,166,72,.4);padding-left:14px;}
+.parts{display:grid;gap:14px;}
+.part{background:var(--card);border:1px solid rgba(239,231,218,.08);border-radius:6px;padding:18px 20px;position:relative;overflow:hidden;}
+.part::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--p);}
+.part.dim{opacity:.55;}
+.part small{font-family:var(--head);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--p);}
+.part h4{margin:3px 0 6px;font-family:var(--display);font-weight:400;font-size:1.65rem;line-height:1.05;color:#fff;}
+.part p{margin:0 0 12px;font-size:.93rem;color:var(--dim);line-height:1.55;}
+.pips{display:flex;flex-wrap:wrap;gap:6px;}
+.pip{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--head);font-size:10px;font-weight:600;border:1px solid rgba(239,231,218,.18);color:var(--faint);text-decoration:none;}
+a.pip.on{background:var(--p);border-color:var(--p);color:var(--crown);box-shadow:0 0 14px var(--p);}
+a.pip.on:hover{transform:scale(1.1);}
+
+/* Lesson */
+.lesson{padding:80px 0 20px;}
+.lesson-head{text-align:center;max-width:760px;margin:0 auto 46px;}
+.lesson-head .eyebrow{color:var(--heart);}
+.lesson-head h2{font-family:var(--display);font-weight:400;font-size:clamp(2.8rem,7vw,4.6rem);line-height:1;margin:0;color:#fff;letter-spacing:-.015em;}
+.lesson-head h2 em{color:var(--gold);}
+.lesson-head .tag-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px;}
+
+.breath{max-width:820px;margin:0 auto 26px;text-align:center;font-family:var(--display);font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.32;color:#fff;}
+.breath em{color:var(--gold);font-style:normal;}
+.myread{max-width:820px;margin:0 auto 70px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;background:rgba(239,231,218,.035);border:1px solid rgba(239,231,218,.1);border-left:3px solid var(--heart);border-radius:4px;padding:22px 24px;}
+.myread .ic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(232,115,90,.14);color:var(--heart);}
+.myread h4{margin:0 0 6px;font-family:var(--head);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--heart);}
+.myread p{margin:0;color:var(--ink);}
+
+.block{margin-top:76px;}
+.block-head{display:flex;align-items:end;justify-content:space-between;gap:18px;border-bottom:1px solid rgba(239,231,218,.12);padding-bottom:16px;margin-bottom:26px;}
+.block-head h3{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.2vw,2.8rem);color:#fff;line-height:1.05;}
+.block-head h3 em{color:var(--c,var(--gold));}
+.block-head p{margin:6px 0 0;color:var(--dim);max-width:40em;font-size:.98rem;}
+.block-head .count{font-family:var(--display);font-size:3.4rem;line-height:.8;color:var(--c,var(--gold));opacity:.5;}
+
+/* Movements: a numbered path */
+.moves{position:relative;display:grid;gap:14px;}
+.move{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;background:var(--card);border:1px solid rgba(239,231,218,.08);border-radius:6px;padding:18px 20px 16px 14px;opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s,border-color .3s;}
+.move.in{opacity:1;transform:none;}
+.move:hover{border-color:rgba(217,166,72,.5);}
+.move .n{font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--gold);text-align:center;}
+.move h4{margin:0 0 4px;font-family:var(--head);font-size:1.08rem;font-weight:600;color:#fff;line-height:1.3;}
+.move p{margin:0;font-size:.98rem;color:var(--dim);line-height:1.65;}
+
+/* Takeaways */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.tk{background:var(--card);border:1px solid rgba(239,231,218,.08);border-radius:6px;padding:18px 18px 16px;position:relative;transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s,opacity .6s;opacity:0;transform:translateY(14px);}
+.tk.in{opacity:1;transform:none;}
+.tk:hover{border-color:var(--k);box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 30px -14px var(--k);transform:translateY(-3px);}
+.tk .ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(239,231,218,.05);color:var(--k);margin-bottom:12px;}
+.tk h5{margin:0 0 6px;font-family:var(--head);font-size:1.04rem;font-weight:600;line-height:1.32;color:#fff;}
+.tk p{margin:0;font-size:.95rem;color:var(--dim);line-height:1.6;}
+.tk details{margin-top:10px;}
+.tk summary{cursor:pointer;list-style:none;font-family:var(--head);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--k);display:inline-flex;align-items:center;gap:7px;padding:4px 0;}
+.tk summary::-webkit-details-marker{display:none;}
+.tk summary::before{content:"+";display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--k);font-size:12px;line-height:1;}
+.tk details[open] summary::before{content:"–";}
+.tk blockquote{margin:8px 0 2px;padding:10px 14px;border-left:2px solid var(--k);background:rgba(239,231,218,.035);font-family:var(--display);font-size:1.15rem;line-height:1.4;color:#fff;border-radius:0 4px 4px 0;}
+
+/* Remember: quotes */
+.carry{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;background:linear-gradient(170deg,#2A1336,#1C0D22);border:1px solid rgba(217,166,72,.35);border-radius:8px;padding:34px 36px;margin-bottom:22px;position:relative;overflow:hidden;}
+.carry::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--spectrum);opacity:.7;}
+.carry small{display:block;font-family:var(--head);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.carry q{display:block;font-family:var(--display);font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.22;color:#fff;quotes:"\201C" "\201D";transition:opacity .35s;}
+.carry q.fade{opacity:0;}
+.draw{cursor:pointer;border:1px solid var(--gold);background:transparent;color:var(--gold);font-family:var(--head);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:12px 16px;border-radius:4px;white-space:nowrap;transition:all .2s;}
+.draw:hover{background:var(--gold);color:var(--crown);}
+.quotes{columns:3 260px;column-gap:16px;}
+.qc{break-inside:avoid;margin:0 0 16px;background:var(--card);border:1px solid rgba(239,231,218,.08);border-radius:6px;padding:18px 20px;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s,border-color .3s;}
+.qc.in{opacity:1;transform:none;}
+.qc:hover{border-color:rgba(217,166,72,.5);}
+.qc p{margin:0;font-family:var(--display);font-size:1.3rem;line-height:1.32;color:#fff;}
+.qc p::before{content:"\201C";color:var(--gold);}
+.qc p::after{content:"\201D";color:var(--gold);}
+
+/* Practices */
+.pr{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.prc{background:linear-gradient(165deg,#2A1336,#1C0D22);border:1px solid rgba(239,231,218,.1);border-radius:6px;padding:20px 20px 18px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .3s,border-color .3s,opacity .6s;opacity:0;transform:translateY(14px);}
+.prc.in{opacity:1;transform:none;}
+.prc:hover{transform:translateY(-3px);border-color:var(--p);}
+.prc::before{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,var(--p) 0%,transparent 70%);opacity:.22;}
+.prc .top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.prc .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(239,231,218,.06);color:var(--p);flex:0 0 auto;}
+.prc h4{margin:0;font-family:var(--head);font-size:1.06rem;font-weight:600;color:#fff;line-height:1.25;}
+.prc .when{display:block;font-family:var(--head);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--p);margin-top:3px;}
+.prc p{margin:0 0 12px;font-size:.95rem;color:var(--dim);line-height:1.6;}
+.prc .say{margin-top:auto;padding:12px 14px;border-left:2px solid var(--p);background:rgba(239,231,218,.04);border-radius:0 4px 4px 0;font-family:var(--display);font-size:1.18rem;line-height:1.36;color:#fff;}
+.prc .say small{display:block;font-family:var(--head);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:4px;}
+
+/* Q&A and the rest of the lesson list */
+.qa{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.qa div{border:1.5px dashed rgba(239,231,218,.16);border-radius:6px;padding:18px 20px;}
+.qa small{font-family:var(--head);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);}
+.qa p{margin:6px 0 0;font-size:.97rem;color:var(--dim);line-height:1.55;}
+.next{margin-top:76px;text-align:center;border:1.5px dashed rgba(239,231,218,.16);border-radius:8px;padding:36px 24px;}
+.next small{font-family:var(--head);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);}
+.next b{display:block;font-family:var(--display);font-weight:400;font-size:2rem;color:#fff;margin-top:6px;}
+.next p{margin:8px auto 0;color:var(--dim);max-width:30em;font-size:.97rem;}
+
+/* Recommended by */
+.recband{padding:56px 0 0;}
+.recs{display:flex;flex-wrap:wrap;gap:12px;}
+.rec{display:flex;align-items:center;gap:12px;padding:9px 20px 9px 9px;border-radius:44px;background:var(--card);border:1px solid rgba(239,231,218,.1);min-width:210px;transition:border-color .3s,transform .3s;}
+.rec:hover{border-color:var(--a);transform:translateY(-2px);}
+.rec .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:1.35rem;color:#fff;background:radial-gradient(circle,var(--a) 0%,rgba(0,0,0,0) 90%);border:1px solid var(--a);flex:0 0 auto;}
+.rec b{display:block;font-family:var(--head);font-size:1rem;font-weight:600;color:#fff;line-height:1.2;}
+.rec small{display:block;font-family:var(--head);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:2px;}
+.rec.empty{background:transparent;border:1.5px dashed rgba(239,231,218,.18);}
+.rec.empty .av{background:none;border:1.5px dashed rgba(239,231,218,.25);color:var(--faint);font-family:var(--head);font-size:1.1rem;}
+.rec.empty b{color:var(--faint);font-weight:500;}
+
+/* Chapter by chapter */
+.toc{display:grid;gap:6px;}
+.toc a{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:baseline;text-decoration:none;padding:8px 12px;border-radius:4px;color:var(--dim);font-size:.95rem;line-height:1.35;border:1px solid transparent;}
+.toc a:hover{border-color:rgba(217,166,72,.4);color:#fff;}
+.toc a span{font-family:var(--display);font-size:1.35rem;color:var(--gold);line-height:1;}
+.toc-card{background:var(--card);border:1px solid rgba(239,231,218,.08);border-radius:6px;padding:18px 14px;}
+.toc-card small{display:block;font-family:var(--head);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);padding:0 12px 10px;}
+.chs{display:grid;gap:12px;}
+.ch{background:var(--card);border:1px solid rgba(239,231,218,.08);border-radius:6px;overflow:hidden;transition:border-color .3s;scroll-margin-top:20px;}
+.ch:hover,.ch[open]{border-color:rgba(217,166,72,.45);}
+.ch summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:62px 1fr 30px;gap:16px;align-items:center;padding:16px 20px 16px 12px;}
+.ch summary::-webkit-details-marker{display:none;}
+.ch .n{font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--gold);text-align:center;}
+.ch .k{display:block;font-family:var(--head);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:3px;}
+.ch h4{margin:0;font-family:var(--head);font-size:1.1rem;font-weight:600;color:#fff;line-height:1.3;}
+.ch .tease{display:block;font-size:.93rem;color:var(--faint);margin-top:3px;line-height:1.45;}
+.ch .plus{width:28px;height:28px;border-radius:50%;border:1px solid rgba(217,166,72,.6);display:grid;place-items:center;color:var(--gold);transition:transform .3s;}
+.ch[open] .plus{transform:rotate(45deg);}
+.ch .chb{padding:0 26px 22px 90px;}
+.ch .chb p{margin:0 0 14px;color:var(--dim);font-size:.99rem;line-height:1.7;}
+.ch .chb .pull{margin:0 0 12px;padding:10px 16px;border-left:2px solid var(--gold);background:rgba(239,231,218,.035);border-radius:0 4px 4px 0;font-family:var(--display);font-size:1.25rem;line-height:1.38;color:#fff;}
+.ch .chb .pull cite{display:block;margin-top:6px;font-family:var(--head);font-style:normal;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);}
+.ch .chb .take{font-family:var(--head);font-size:.95rem;color:#fff;}
+.ch .chb .take b{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--emerald);margin-right:8px;}
+.expand{cursor:pointer;background:none;border:1px solid rgba(239,231,218,.18);color:var(--dim);font-family:var(--head);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:9px 14px;border-radius:30px;}
+.expand:hover{border-color:var(--gold);color:#fff;}
+
+/* Yes / No lists */
+.yn{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.yn > div{background:var(--card);border:1px solid rgba(239,231,218,.08);border-top:3px solid var(--y);border-radius:6px;padding:20px 22px;}
+.yn h4{margin:0 0 4px;font-family:var(--display);font-weight:400;font-size:1.8rem;color:#fff;}
+.yn h4 em{color:var(--y);font-style:normal;}
+.yn > div > p{margin:0 0 14px;font-size:.92rem;color:var(--faint);}
+.yn dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:.95rem;}
+.yn dt{font-family:var(--head);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--y);padding-top:5px;}
+.yn dd{margin:0;color:var(--dim);line-height:1.55;}
+.caveat{margin-top:26px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;font-size:.95rem;color:var(--dim);background:rgba(239,231,218,.035);border:1px solid rgba(239,231,218,.1);border-left:3px solid var(--blue);border-radius:4px;padding:16px 20px;}
+.caveat .ic{color:var(--blue);padding-top:2px;}
+.caveat b{color:#fff;font-weight:600;}
+
+.qc.plain p::before,.qc.plain p::after{content:none;}
+.qc cite{display:block;margin-top:8px;font-family:var(--head);font-style:normal;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);}
+.carry cite{display:block;margin-top:10px;font-family:var(--head);font-style:normal;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);}
+
+/* Not opened yet */
+.notyet{margin:60px auto 0;max-width:760px;text-align:center;border:1.5px dashed rgba(239,231,218,.18);border-radius:8px;padding:44px 28px;}
+.notyet small{font-family:var(--head);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);}
+.notyet b{display:block;font-family:var(--display);font-weight:400;font-size:2.1rem;color:#fff;margin-top:8px;line-height:1.1;}
+.notyet p{margin:10px auto 0;color:var(--dim);max-width:32em;}
+
+/* Close + footer */
+.close{text-align:center;padding:100px 0 90px;margin-top:80px;background:radial-gradient(ellipse 120% 120% at 50% 20%,#2A1130 0%,#1B0C20 60%,#2B1A5C 150%);}
+.close img{width:34px;opacity:.9;margin-bottom:22px;}
+.close p.big{font-family:var(--display);font-size:clamp(1.6rem,4.2vw,2.5rem);line-height:1.2;color:#fff;max-width:21em;margin:0 auto;}
+.close p.big em{color:var(--gold);}
+.close p.by{margin-top:20px;font-family:var(--head);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);}
+footer{background:#120714;text-align:center;padding:44px 28px 50px;color:var(--faint);font-size:.9rem;}
+footer img{width:42px;opacity:.85;}
+footer p{margin:10px auto 0;max-width:44em;}
+footer a{color:var(--gold);}
+
+@media (max-width:1000px){.cards,.pr,.qa{grid-template-columns:1fr 1fr;}.whole{grid-template-columns:1fr;}}
+@media (max-width:680px){
+  .cards,.pr,.qa,.yn{grid-template-columns:1fr;}
+  .ch summary{grid-template-columns:44px 1fr 28px;gap:12px;}
+  .ch .chb{padding:0 18px 20px 18px;}
+  .rec{min-width:0;flex:1 1 100%;}
+  .carry{grid-template-columns:1fr;padding:26px 22px;}
+  .move{grid-template-columns:44px 1fr;gap:12px;}
+  .move .n{font-size:2rem;}
+  .myread{grid-template-columns:1fr;}
+  .shelf{grid-template-columns:repeat(2,1fr);gap:30px 20px;}
+  .sec-head{flex-direction:column;align-items:start;}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important;}.move,.tk,.qc,.prc{opacity:1;transform:none;}html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ THE SHELF ═══════════ -->
+<div id="view-shelf">
+<header class="hero dots">
+  <div class="wide">
+    <nav class="crumb"><a href="https://hagerca.github.io/#healing"><img src="./assets/mark-light.png" alt="">The Alchemy Lab</a> <span>/</span> <span>My Healing</span></nav>
+    <svg class="shelf-art" viewBox="0 0 380 230" aria-hidden="true">
+      <defs>
+        <radialGradient id="sg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F7D46A" stop-opacity=".55"/><stop offset="1" stop-color="#F7D46A" stop-opacity="0"/></radialGradient>
+        <linearGradient id="wd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6A4428"/><stop offset="1" stop-color="#2A190F"/></linearGradient>
+      </defs>
+      <circle class="glow" cx="190" cy="110" r="96" fill="url(#sg)"/>
+      <rect x="60" y="80" width="22" height="106" rx="2" fill="#2E3E73" stroke="#8FB0F0" stroke-opacity=".5"/>
+      <rect x="86" y="96" width="18" height="90" rx="2" fill="#24524A" stroke="#5FC0AE" stroke-opacity=".5"/>
+      <rect x="108" y="70" width="26" height="116" rx="2" fill="#4A2A55" stroke="#AC9FF2" stroke-opacity=".5"/>
+      <rect x="138" y="88" width="16" height="98" rx="2" fill="#5A3A1E" stroke="#D9A648" stroke-opacity=".5"/>
+      <g class="lift">
+        <rect x="166" y="52" width="48" height="134" rx="3" fill="#6B1F2A" stroke="#F2C230" stroke-width="1.6"/>
+        <line x1="172" y1="66" x2="208" y2="66" stroke="#F2C230" stroke-width="1.2"/>
+        <line x1="172" y1="172" x2="208" y2="172" stroke="#F2C230" stroke-width="1.2"/>
+        <path d="M190 132 C176 122 170 112 176 104 C181 98 188 100 190 106 C192 100 199 98 204 104 C210 112 204 122 190 132 Z" fill="#E8735A" stroke="#F7D46A" stroke-width="1.2"/>
+      </g>
+      <rect x="222" y="84" width="20" height="102" rx="2" fill="#3A2448" stroke="#E58BB0" stroke-opacity=".5"/>
+      <rect x="246" y="100" width="24" height="86" rx="2" fill="#24524A" stroke="#7FD6A2" stroke-opacity=".5"/>
+      <g transform="rotate(12 300 186)"><rect x="276" y="86" width="20" height="100" rx="2" fill="#2E3E73" stroke="#8FB0F0" stroke-opacity=".5"/></g>
+      <rect x="40" y="186" width="300" height="12" rx="2" fill="url(#wd)"/>
+      <line x1="40" y1="186" x2="340" y2="186" stroke="#D9A648" stroke-opacity=".5"/>
+      <circle cx="74" cy="40" r="1.8" fill="#EFE7DA" opacity=".6"/><circle cx="318" cy="52" r="1.8" fill="#EFE7DA" opacity=".6"/><circle cx="296" cy="22" r="1.4" fill="#EFE7DA" opacity=".5"/><circle cx="48" cy="120" r="1.4" fill="#EFE7DA" opacity=".5"/>
+    </svg>
+    <p class="kicker">My Healing · Personal growth</p>
+    <h1>The <em>Library</em></h1>
+    <p class="sub">Every book I've read, and what it left in me.</p>
+    <p class="dek">Every book I have read, on one shelf. Pick one. Each one opens to the whole of it in a few minutes: what it says, what to take from it, the lines worth keeping, and the practices to actually do.</p>
+    <div class="meta-row" id="shelf-stats"></div>
+  </div>
+</header>
+
+<section class="shelf-wrap">
+  <div class="wide">
+    <div class="sec-head">
+      <div><p class="eyebrow">The shelf</p><h2>Books I've <em>read</em></h2></div>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="shelf" id="shelf"></div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════ A BOOK ═══════════ -->
+<div id="view-book" hidden></div>
+
+<footer>
+  <img src="./assets/mark-light.png" alt="The Alchemy Lab">
+  <p>Summaries by SAGE, for Christopher's own study. Each book says what its summary was built from. Quoted lines belong to their authors; buy the books, they earned it.</p>
+  <p><a href="https://hagerca.github.io/#healing">Back to the Alchemy Lab</a></p>
+</footer>
+
+<script>
+/* Icons: one small line set. */
+const P = {
+  heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+  eye:'<path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  fork:'<path d="M12 21v-8M12 13 6 5M12 13l6-8M4 5h4M16 5h4"/>',
+  hand:'<path d="M7 12V6a1.5 1.5 0 0 1 3 0v5M10 11V4.5a1.5 1.5 0 0 1 3 0V11M13 11V5.5a1.5 1.5 0 0 1 3 0V12M16 12V8.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-1a6 6 0 0 1-5-2.7L3.6 15a1.5 1.5 0 0 1 2.4-1.8L7 14.5"/>',
+  broom:'<path d="M18 3 11 10M9 9l6 6-3 6-9-9 6-3z"/><path d="M6 15l3 3"/>',
+  moon:'<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+  door:'<path d="M5 21V4a1 1 0 0 1 1-1h9l4 2v16"/><path d="M3 21h18M12 12h.01"/>',
+  leaf:'<path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19 14 10"/>',
+  wind:'<path d="M3 8h11a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h8"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6 19 19M5 19l1.4-1.4M17.6 6.4 19 5"/>',
+  mask:'<path d="M4 6c3-1 5 0 8 0s5-1 8 0c0 7-3 12-8 12S4 13 4 6z"/><path d="M8.5 10.5h2M13.5 10.5h2"/>',
+  feather:'<path d="M20 4C10 4 6 10 6 18M6 18l-2 2M6 14h6M8 10h7"/>',
+  key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3"/>',
+  spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>',
+  seed:'<path d="M12 21v-7"/><path d="M12 14c-4 0-6-3-6-7 4 0 6 3 6 7zM12 14c4 0 6-3 6-7-4 0-6 3-6 7z"/>',
+  book:'<path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2V5z"/><path d="M8 7h8"/>',
+  rock:'<path d="M3 20h18l-4-9-3 3-3-7-8 13z"/>',
+  dawn:'<path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 6v3M5.6 9.6l1.8 1.8M18.4 9.6l-1.8 1.8"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
+  shield:'<path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3z"/>',
+  pot:'<path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-6zM2 10h20M9 6c0-1 1-1 1-2M14 6c0-1 1-1 1-2"/>',
+  knife:'<path d="M3 21 15 9l3 3-6 6H3zM15 9l4-4a2 2 0 0 1 3 3l-4 4"/>',
+  pill:'<rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-45 12 12)"/><path d="m9 9 6 6"/>',
+  apple:'<path d="M12 7c-3-2-8 0-8 5 0 4 3 9 6 9 1 0 1.5-.5 2-.5s1 .5 2 .5c3 0 6-5 6-9 0-5-5-7-8-5zM12 7c0-2 1-4 3-4"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  fish:'<path d="M3 12c3-5 10-6 15 0-5 6-12 5-15 0zM18 12l3-3v6l-3-3z"/><circle cx="8" cy="11" r=".6"/>'
+};
+const I = (k,s=18) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[k]||P.spark}</svg>`;
+
+/* ════════════════════════════════════════════════════════════
+   THE BOOKS. The shelf is every book Christopher has read.
+   status: 'reading' | 'read'.  summary: 'lessons' | 'whole' | null (not opened yet).
+   rec: who recommended it, [name, how they're known]. Empty = not remembered.
+   held: recommenders kept off this page for now (privacy rule), count only.
+   ════════════════════════════════════════════════════════════ */
+const BOOKS = [
+{
+  id:'way-of-mastery', title:'The Way of Mastery', titleHtml:'The Way of <em>Mastery</em>',
+  author:'Jeshua, through Jayem', status:'reading', with:'with Austin, Fridays', a:'#E8735A', cover:'mastery', hero:'heart',
+  summary:'lessons', rec:[], held:3,
+  oneLine:'Thirty-five lessons on remembering who you are, from the heart outward.',
+  stats:[['3','books in one'],['35','lessons'],['1','summarized so far']],
+  whole:[
+    '<b>The Way of Mastery</b> is thirty-five lessons given between 1994 and 1997 by Jeshua ben Joseph, the Aramaic name of Jesus, spoken through Jon Marc Hammer, known as Jayem. The Shanti Christo Foundation gathered them into three books: <b>The Way of the Heart</b>, <b>The Way of Transformation</b> and <b>The Way of Knowing</b>.',
+    'One premise sits under every page. You are perfectly free at all times, and everything you experience comes from your own choosing. Nothing outside you has ever been the cause. The work is not to learn anything new. It is to remember what has always been true, that you rest in the love you came from and were never separate from it, and then to clear away everything put in the way of that remembering.',
+    'It is a path you walk, not one you read. Jeshua asks for slow reading, one lesson at a time, each sentence held in the heart before moving on. That is the pace Austin and I are keeping.'
+  ],
+  wholeNote:'This overview grows as we go. Right now it is built from Lesson One and the book\'s own description of itself. Each new lesson adds to it.',
+  parts:[
+    {n:'Part One', name:'The Way of the Heart', count:12, p:'#E8735A',
+     d:'Purification. Taking full responsibility for your experience, letting the heart lead and the intellect serve, and loving yourself through everything that comes up to be healed.',
+     lessons:['L1']},
+    {n:'Part Two', name:'The Way of Transformation', count:null, p:'#AC9FF2', d:'Still ahead of us.', lessons:[]},
+    {n:'Part Three', name:'The Way of Knowing', count:null, p:'#5FC0AE', d:'Still ahead of us.', lessons:[]}
+  ]
+},
+{
+  id:'meditations', title:'Meditations', titleHtml:'<em>Meditations</em>',
+  author:'Marcus Aurelius', status:'reading', a:'#C9A25A', cover:'meditations', hero:'laurel',
+  summary:'whole', rec:[],
+  oneLine:'An emperor\'s private notebook on how to stay good, steady and free when nothing around you is.',
+  stats:[['12','books'],['161 to 180','his reign, AD'],['0','readers intended']],
+  whole:[
+    '<b>Meditations</b> is the private notebook of Marcus Aurelius, Roman emperor from 161 to 180 AD. He wrote it in Greek, most of it probably in army camps on the Danube frontier during the wars of the 170s, and he wrote it for no one but himself. The oldest manuscripts call it <b>To Himself</b>. It was never meant to be read.',
+    'That is what makes it work. These are not lectures. They are reminders a tired, powerful man wrote to his own mind at the end of hard days: your judgments are the only thing that can hurt you, the present moment is the only thing you have, other people are your kin even when they behave badly, death is close so be good now, and the obstacle in the road is part of the road.',
+    'It is Stoicism lived rather than argued. Twelve books of short notes, some a line long, some a page, circling the same handful of truths from a hundred angles, the way you remind yourself of something you keep forgetting.'
+  ],
+  wholeNote:'Lines quoted on this page come from George Long\'s 1862 translation, which is in the public domain. The wording is older than modern editions such as Gregory Hays\'s, but the ideas are the same. Book and section numbers are given so you can find each one in any translation.',
+  chaptersLabel:'Book by book', chapterWord:'Meditations',
+  chapters:[
+    {k:'Gratitude', t:'What I owe, and to whom', tease:'A thank-you list for a whole life.',
+     p:['Marcus opens with sixteen short entries naming what he learned from each person who formed him. His grandfather gave him a gentle temper. His mother gave him simplicity and a dislike of the rich man\'s habits. Rusticus taught him to correct his character rather than show off, and handed him Epictetus. His adoptive father, Antoninus, gets the longest portrait of all: mild, unhurried, firm once he had decided, free of vanity, a man who listened.',
+      'Before saying a word about how to live, he names who taught him to live. Book One is the oldest "recommended by" list there is.'],
+     q:'From my grandfather Verus [I learned] good morals and the government of my temper.', c:'1.1',
+     take:'Start by naming who made you. Gratitude is the foundation, not the finish.'},
+    {k:'The morning', t:'Begin the morning by saying to thyself', tease:'Rehearse the hard people before you meet them.',
+     p:['He tells himself what the day will bring: the busybody, the ungrateful, the arrogant. None of them can actually harm him, because none can make him do wrong, and he cannot be angry at his kin. We are made to work together, like feet, hands and eyelids.',
+      'Then the urgency arrives. He has put things off long enough. Do each act as if it were the last of your life. The present moment is the only thing anyone can lose, so the longest life and the shortest come to the same thing.'],
+     q:'For the present is the only thing of which a man can be deprived.', c:'2.14',
+     take:'Prepare for the day honestly, then spend the moment you actually have.'},
+    {k:'Time is short', t:'Hurry, and keep the inner guide clean', tease:'Life shrinks, and the mind may go first.',
+     p:['Not only is life running out, he notes, but understanding may fail before the body does, so there is no time to waste. Don\'t spend what is left wondering what other people are doing or thinking unless it serves the common good.',
+      'Keep the guiding spirit inside you clean and upright. Stand straight, not held straight. If you ever find anything better than justice, truth, self-control and courage, turn to it with your whole soul. He doubts you will.'],
+     q:'Short then is the time which every man lives; and small the nook of the earth where he lives.', c:'3.10',
+     take:'Stop spending the rest of your life on other people\'s business.'},
+    {k:'The retreat', t:'Retire into your own soul', tease:'You don\'t need a beach house. You need a quiet mind.',
+     p:['People look for retreats in the country, by the sea, in the mountains. You can retire into yourself any time you like, and there is no quieter place. Keep short, basic principles ready so a moment of looking at them restores you.',
+      'The book is full of the famous lines: take away the opinion and the harm goes with it; don\'t act as if you had ten thousand years; be like the rock the waves keep breaking against. Everyone from the time of Vespasian is gone, and so is their fame. Do few things, the necessary ones, and you will have peace.'],
+     q:'Take away thy opinion, and then there is taken away the complaint, "I have been harmed." Take away the complaint, "I have been harmed," and the harm is taken away.', c:'4.7',
+     take:'The retreat is inward and always open.'},
+    {k:'The work', t:'Rising to the work of a human being', tease:'The bed is warm. Get up anyway.',
+     p:['When you don\'t want to get out of bed, remember you are rising to do the work of a human being. Were you made to lie under the covers and keep warm? Every plant and bee does its job. Do yours.',
+      'Your mind takes on the color of what you think about most, so choose those thoughts deliberately. And the mind can turn every obstacle into material for the next act: what stands in the way becomes the way.'],
+     q:'Such as are thy habitual thoughts, such also will be the character of thy mind; for the soul is dyed by the thoughts.', c:'5.16',
+     take:'Your habitual thoughts are dyeing you. Pick the color.'},
+    {k:'Simplicity', t:'Don\'t be made into a Caesar', tease:'Power stains. Stay simple.',
+     p:['Do your duty, cold or warm, tired or rested, praised or blamed. Look at expensive things stripped of their glamour: the fine dish is a dead fish, the purple robe is sheep\'s wool dyed in shellfish blood. Seeing things as they are takes away their pull.',
+      'He warns himself not to be dyed by the purple of empire, and to stay simple, good, pure, serious and kind. And when someone wrongs you, the best revenge is not to become like them.'],
+     q:'The best way of avenging thyself is not to become like [the wrong-doer].', c:'6.6',
+     take:'Strip the glamour off what you crave, and don\'t let power change you.'},
+    {k:'Within', t:'Look within', tease:'The fountain of good is inside, if you keep digging.',
+     p:['A man is worth exactly as much as the things he busies himself with. Wipe out imagination, stop the strings that pull you, and stay in the present. Don\'t be disturbed about the future; you will meet it with the same reason you have now.',
+      'The good is a spring inside you that keeps rising as long as you keep digging. And the whole of good character comes to this: live each day as the last, without frenzy, without numbness, without pretending.'],
+     q:'Look within. Within is the fountain of good, and it will ever bubble up, if thou wilt ever dig.', c:'7.59',
+     take:'Dig inward, every day, and live it like the last one.'},
+    {k:'Judgment', t:'It is not the thing, it is your judgment', tease:'The pain is in the story, and you can drop the story.',
+     p:['If something outside you causes pain, it is not the thing but your judgment about it, and you can wipe that judgment out right now. If it is something in your own character, who is stopping you from correcting it?',
+      'Don\'t let the whole of your life crowd in on you at once. Take each present difficulty by itself and ask what in it is actually unbearable. The answer is usually nothing.'],
+     q:'If thou art pained by any external thing, it is not this thing that disturbs thee, but thy own judgment about it. And it is in thy power to wipe out this judgment now.', c:'8.47',
+     take:'Separate the event from the story, then drop the story.'},
+    {k:'Enough', t:'That is enough', tease:'Right thinking, right action, contentment. Done.',
+     p:['Death is a natural process like growing teeth or a beard; meet it as one more of nature\'s works. Loss is only change, and nature delights in change. Don\'t wait for a perfect world. Be satisfied with even the smallest step forward.',
+      'When someone\'s shamelessness offends you, ask: is it possible for the world to have no shameless people? It is not. So don\'t ask for the impossible.'],
+     q:'Thy present opinion founded on understanding, and thy present conduct directed to social good, and thy present disposition of contentment with everything which happens, that is enough.', c:'9.6',
+     take:'Clear thinking, useful action and contentment, right now, are enough.'},
+    {k:'Be it', t:'Stop talking about it. Be it.', tease:'No more describing a good man.',
+     p:['He asks his own soul when it will finally be good, simple and whole, content with what it has. He contemplates the whole of time and all of substance until each single thing looks like a grain of a fig seed.',
+      'Generations of people fall like leaves the wind scatters, and new ones grow in the spring. So stop discussing what a good man should be.'],
+     q:'No longer talk at all about the kind of man that a good man ought to be, but be such.', c:'10.16',
+     take:'Enough philosophy about it. Live it.'},
+    {k:'Anger', t:'Before you get angry, remember', tease:'A checklist for when someone wrongs you.',
+     p:['Book Eleven holds his longest practical list: what to remember when someone offends you. That we are made for each other. That they act from what they believe is right. That you have made the same mistakes. That you can\'t be sure they did wrong at all. That life is short. That it is your judgment, not their act, that troubles you. That anger hurts you more than the thing you are angry about.',
+      'And the last item: a kind disposition is invincible, as long as it is genuine and not a smile put on for show.'],
+     q:'Consider that a good disposition is invincible if it be genuine, and not an affected smile and acting a part.', c:'11.18',
+     take:'Run the list before you react. Kindness is the strongest move on it.'},
+    {k:'The last word', t:'Depart satisfied', tease:'Everything you want is available now.',
+     p:['Everything you hope to reach some day by a long road, you can have now, if you stop dwelling on the past, hand the future to providence, and direct the present toward reverence and justice. He wonders how every man loves himself more than anyone else, yet values other people\'s opinion of him over his own.',
+      'He ends with an actor whose play is cut short before the fifth act. Three acts can be the whole drama. Leave the stage satisfied, because the one who dismisses you is satisfied too.'],
+     q:'Every man loves himself more than all the rest of men, but yet sets less value on his own opinion of himself than on the opinion of others.', c:'12.4',
+     take:'Don\'t wait for the fifth act. This act is the whole play.'}
+  ],
+  core:{
+    takeaways:[
+      ['eye','#F2C230','The thing isn\'t the problem. My judgment is','Events arrive neutral. The harm lives in the story I tell about them, and I can drop the story.','it is not this thing that disturbs thee, but thy own judgment about it. (8.47)'],
+      ['clock','#E8735A','Now is all I have, and all I can lose','The longest life and the shortest lose the same thing: this moment. So this moment is where life is.','the present is the only thing of which a man can be deprived (2.14)'],
+      ['dawn','#D9A648','Rehearse the hard people','Naming the difficult people before the day starts takes away their power to surprise me into anger.','Begin the morning by saying to thyself, I shall meet with the busybody, the ungrateful, arrogant, deceitful, envious, unsocial. (2.1)'],
+      ['spark','#AC9FF2','My thoughts are dyeing me','Character is built out of whatever I think about most. That is a choice I make all day.','the soul is dyed by the thoughts. (5.16)'],
+      ['rock','#5FC0AE','The obstacle is the road','What blocks the plan becomes the next thing to practice on. Nothing is wasted.','that which is an obstacle on the road helps us on this road. (5.20)'],
+      ['hand','#7FD6A2','Stop talking about it','Describing a good man is easy. Being one is the whole assignment.','No longer talk at all about the kind of man that a good man ought to be, but be such. (10.16)'],
+      ['heart','#E58BB0','Gratitude first','Before any teaching, he names who made him. Knowing my teachers keeps me humble and keeps them alive in me.','From my grandfather Verus [I learned] good morals and the government of my temper. (1.1)'],
+      ['shield','#8FB0F0','The best revenge is not becoming them','When I am wronged, the only real win is to not take on their shape.','The best way of avenging thyself is not to become like [the wrong-doer]. (6.6)'],
+      ['moon','#F2C230','Death is close, so be good now','Not as a threat. As the reason to stop postponing the man I mean to be.','Death hangs over thee. While thou livest, while it is in thy power, be good. (4.17)'],
+      ['door','#5FC0AE','The retreat is inside','No vacation required. A few true principles, looked at for a moment, are enough to restore me.','Constantly then give to thyself this retreat, and renew thyself (4.3)'],
+      ['seed','#7FD6A2','Love the people I\'ve been given','The people around me are my portion. Love them truly, not in theory.','the men among whom thou hast received thy portion, love them, but do it truly [sincerely]. (6.39)'],
+      ['feather','#AC9FF2','Don\'t let power dye me','Success, status and a big role can stain me if I\'m not watching. Stay simple and kind.','Take care that thou art not made into a Caesar, that thou art not dyed with this dye (6.30)']
+    ],
+    remember:[
+      ['I am rising to the work of a human being.','5.1'],
+      ['Take away thy opinion, and then there is taken away the complaint, "I have been harmed."','4.7'],
+      ['It is not this thing that disturbs thee, but thy own judgment about it.','8.47'],
+      ['The present is the only thing of which a man can be deprived.','2.14'],
+      ['The soul is dyed by the thoughts.','5.16'],
+      ['That which is an obstacle on the road helps us on this road.','5.20'],
+      ['Look within. Within is the fountain of good, and it will ever bubble up, if thou wilt ever dig.','7.59'],
+      ['No longer talk at all about the kind of man that a good man ought to be, but be such.','10.16'],
+      ['Death hangs over thee. While thou livest, while it is in thy power, be good.','4.17'],
+      ['Be like the promontory against which the waves continually break, but it stands firm and tames the fury of the water around it.','4.49'],
+      ['The best way of avenging thyself is not to become like the wrong-doer.','6.6'],
+      ['Loss is nothing else than change.','9.35'],
+      ['The universe is transformation: life is opinion.','4.3'],
+      ['If it is not right, do not do it: if it is not true, do not say it.','12.17'],
+      ['The perfection of moral character consists in this, in passing every day as the last.','7.69'],
+      ['Every man is worth just so much as the things are worth about which he busies himself.','7.3']
+    ],
+    practices:[
+      ['dawn','#D9A648','The morning rehearsal','Before you get out of bed','Name what today will bring, including the people who will test you. Remind yourself none of them can make you do wrong, and that you were made to work alongside them. Then get up.','I am rising to the work of a human being.'],
+      ['eye','#F2C230','The judgment check','The moment something hurts or offends','Split it in two: what actually happened, and the story you added. Keep the first. Drop the second.','It is not this thing that disturbs me, but my own judgment about it.'],
+      ['door','#5FC0AE','The inner retreat','Midday, or any time you feel crowded','Take a few minutes alone with your mind. Have two or three short principles ready and look at them until you settle. No travel required.','Constantly give yourself this retreat, and renew yourself.'],
+      ['clock','#E8735A','The last act','Before the next task','Do the next thing as if it were the last thing you will ever do: carefully, without rushing, without drama, without pretending.','Pass every day as the last.'],
+      ['globe','#8FB0F0','The view from above','When something feels enormous','Zoom out. Picture all of time and all of the earth, the people from a hundred years ago who are gone with their worries. Then look at today\'s problem again.','Contemplate the whole of time and the whole of substance.'],
+      ['heart','#E58BB0','The gratitude ledger','Once, then add to it','Write your own Book One: each person who formed you and the one thing you took from them. (The Recommended by line on every book in this library is a small version of it.)','From my grandfather I learned...'],
+      ['knife','#AC9FF2','Strip the glamour','When you want something too much','Describe it in plain physical terms, the way he called a fine robe sheep\'s wool dyed with shellfish blood. Watch the pull fade.','See it as it is.'],
+      ['shield','#7FD6A2','The anger checklist','Before answering someone who wronged you','Run a few of Book Eleven\'s reminders: they act from what they believe; I have done the same; I can\'t be sure they did wrong; life is short; my judgment is the real disturbance. Then choose kindness, the real kind.','A good disposition is invincible, if it be genuine.'],
+      ['rock','#5FC0AE','The obstacle turn','When the plan breaks','Ask what this obstacle lets you practice right now: patience, honesty, courage, humility. Do that instead.','What stands in the way becomes the way.']
+    ]
+  }
+},
+{
+  id:'plant-paradox', title:'The Plant Paradox', titleHtml:'The Plant <em>Paradox</em>',
+  author:'Steven R. Gundry, MD', status:'read', a:'#7FD6A2', cover:'paradox', hero:'leaf',
+  summary:'whole', rec:[['Dianna Laine','']],
+  oneLine:'A heart surgeon\'s case that plants defend themselves, and that some "healthy" foods are the problem.',
+  stats:[['3','phases'],['7','disruptors'],['2017','published']],
+  whole:[
+    '<b>The Plant Paradox</b> is Dr. Steven Gundry\'s argument, published in 2017, that plants do not want to be eaten and defend themselves chemically. Their main weapon, he says, is a family of proteins called <b>lectins</b>, concentrated in seeds, grains, beans, skins and rinds.',
+    'In his account, lectins and a handful of modern habits he calls the <b>Seven Deadly Disruptors</b> wear down the lining of the gut. Things leak through that shouldn\'t, the immune system stays on alert, and the result shows up as inflammation, weight gain, autoimmune trouble and fatigue. That is the paradox of the title: some of the foods sold as healthiest, like whole grains, beans and tomatoes, are on his list of the most harmful.',
+    'The fix is a three-phase program. Take the worst lectins out, feed the good gut bacteria with leafy greens, resistant starch and olive oil, eat less animal protein but better quality, and then lengthen the time between meals.'
+  ],
+  wholeNote:'Summarized from the book\'s structure and its program. The science here is Gundry\'s case, presented faithfully; see the note at the bottom of the page.',
+  chaptersLabel:'Part by part', chapterWord:'',
+  chapters:[
+    {n:'I', k:'Part One', t:'Plants fight back', tease:'Why your salad has a defense system.',
+     p:['Animals can run; plants can\'t. So they defend themselves with chemistry: toxins, irritants, and above all lectins, proteins that bind to sugars on the cells of whatever eats them. Gundry\'s point is that humans spent most of history eating leaves and tubers, and only met grains and beans in quantity about ten thousand years ago, so we are poorly adapted to their lectins.'],
+     take:'Seeds want to survive being eaten. Leaves are the safer part of the plant.'},
+    {n:'II', k:'Part One', t:'Lectins and the gut wall', tease:'The frontier is one cell thick.',
+     p:['The gut lining is a single layer of cells, protected by mucus and by trillions of bacteria he calls your gut buddies. In his account, lectins pry open the gaps between those cells. Bits of food, bacteria and lectins slip through, the immune system reacts, and the inflammation that follows spreads.',
+      'Some lectins also resemble the body\'s own proteins closely enough to confuse the immune system, which he ties to autoimmune disease.'],
+     take:'Protect the lining and feed the bacteria that guard it.'},
+    {n:'III', k:'Part One', t:'The Seven Deadly Disruptors', tease:'It\'s not only the food.',
+     p:['Seven modern exposures, he argues, break down the gut\'s defenses: broad-spectrum antibiotics; NSAID painkillers like ibuprofen; stomach-acid blockers; artificial sweeteners; endocrine disruptors in plastics and personal-care products; genetically modified foods and the herbicide glyphosate (Roundup); and constant exposure to blue light, which keeps the body in a year-round summer feeding mode.'],
+     take:'Audit the medicine cabinet and the bathroom shelf, not only the pantry.'},
+    {n:'IV', k:'Part One', t:'How "healthy" eating backfires', tease:'Whole wheat, fruit all year, corn-fed meat.',
+     p:['Whole grains keep the lectin-rich hull. Fruit eaten year-round signals the body to store fat for a winter that never comes. Meat and farmed fish raised on corn and soy pass those lectins along. Milk from most modern cows carries a protein, A1 casein, that he treats as a lectin-like irritant.'],
+     take:'Healthy by label is not healthy for your gut.'},
+    {n:'V', k:'Part Two · Phase 1', t:'The three-day cleanse', tease:'Reset the gut, fast.',
+     p:['Three days to clear out the bad bacteria and feed the good ones: mostly leafy greens and cruciferous vegetables, approved oils, and a small amount of clean protein. Grains, sugar, fruit, dairy and nightshades are out. He insists you go straight into Phase 2 afterward so the reset holds.'],
+     take:'Three days, then don\'t stop.'},
+    {n:'VI', k:'Part Two · Phase 2', t:'Repair and restore', tease:'The main program, six weeks or more.',
+     p:['Take the big lectins out: grains, beans and legumes, nightshades with their peels and seeds, squash and other seeded vegetables, out-of-season fruit, sugar and sweeteners, and corn- and soy-fed animal products. Eat more of the rest: leafy greens, cruciferous vegetables, avocado, olive oil, certain nuts, and resistant starches like sweet potato and green banana.',
+      'Keep animal protein to about eight ounces a day, mostly wild fish, shellfish and pastured eggs, with grass-fed meat as the smaller share. If you eat dairy, choose sheep, goat, buffalo or A2 cow milk.'],
+     take:'Swap, don\'t starve. Most of the plate is green.'},
+    {n:'VII', k:'Part Two · Phase 3', t:'Reap the rewards', tease:'Less animal protein, longer gaps between meals.',
+     p:['Once the gut has healed, cut animal protein further, to two to four ounces a day, and add fasting in one form: a regular vegan fasting stretch, daily time-restricted eating, or longer gaps between meals. Some lectin foods can come back if they are prepared properly, like beans from a pressure cooker.'],
+     take:'Eat less often, and less animal protein, for the long run.'},
+    {n:'VIII', k:'Part Three', t:'Keto intensive care, supplements and recipes', tease:'The stricter version and the kitchen.',
+     p:['For people facing serious illness such as diabetes, cancer or kidney and neurological disease, he lays out a stricter ketogenic version. The book closes with his supplement recommendations, meal plans and recipes built on the Yes list.'],
+     take:'The program has a gentler road and a stricter one. Know which you are on.'}
+  ],
+  core:{
+    takeaways:[
+      ['leaf','#7FD6A2','Plants don\'t want to be eaten','That one idea explains the whole book. Seeds and skins carry the defenses; leaves and roots carry fewer.','Gundry\'s core claim: lectins are a plant\'s chemical defense.'],
+      ['shield','#8FB0F0','The gut wall is the frontier','Most of the program is about protecting one thin layer of cells and the bacteria that guard it.','Leaky gut is the mechanism the whole book turns on.'],
+      ['seed','#F2C230','Feed the gut buddies','Leafy greens, resistant starch and fiber feed the bacteria that do the protecting.','Resistant starches: sweet potato, yams, taro, green banana, millet and sorghum.'],
+      ['eye','#E8735A','Question the health halo','Whole wheat, beans, brown rice, tomatoes and all-year fruit are the biggest surprises on his No list.','The paradox of the title.'],
+      ['pot','#D9A648','Preparation changes the food','Pressure-cooking, peeling and deseeding remove much of the lectin load from foods he otherwise bans.','A pressure cooker is his most recommended kitchen tool.'],
+      ['fish','#5FC0AE','Less animal protein, better quality','Wild fish, shellfish and pastured eggs first; grass-fed meat in smaller amounts; corn-fed and farmed least.','About 8 oz a day in Phase 2, 2 to 4 oz in Phase 3.'],
+      ['pill','#AC9FF2','Check the medicine cabinet','Painkillers, antacids and antibiotics are on his list of gut disruptors alongside food.','The Seven Deadly Disruptors.'],
+      ['apple','#E58BB0','Fruit is candy','Eat it in season and in small amounts, not all year.','Out-of-season fruit tells the body to store for winter.'],
+      ['clock','#F2C230','When you eat matters too','Longer gaps between meals give the gut time to repair.','Phase 3 adds time-restricted eating or fasting.']
+    ],
+    remember:[
+      ['Plants don\'t want to be eaten.'],
+      ['Leaves over seeds.'],
+      ['Peel it, deseed it, or pressure-cook it.'],
+      ['Feed your gut buddies.'],
+      ['Fruit is candy: in season, in small amounts.'],
+      ['Olive oil generously.'],
+      ['Animal protein is the side, not the plate.'],
+      ['Check the medicine cabinet, not only the pantry.'],
+      ['Millet and sorghum are the grains that pass.'],
+      ['Phase 1 is three days. Phase 2 is the real work.']
+    ],
+    remPlain:true,
+    practices:[
+      ['leaf','#7FD6A2','The three-day cleanse','To start, or to reset after a rough stretch','Three days of greens, cruciferous vegetables, approved oils and a little clean protein. No grains, sugar, fruit, dairy or nightshades. Go straight into Phase 2 afterward.','Three days, then keep going.'],
+      ['door','#D9A648','The kitchen swap','One weekend','Go through the pantry with the Yes and No lists below. Move the No foods out of sight and stock the Yes foods so the easy choice is the right one.','Swap, don\'t starve.'],
+      ['pot','#5FC0AE','Pressure-cook the beans','Whenever beans, lentils or quinoa come back','Pressure cooking breaks down most lectins in legumes. Canned beans from a pressure-cooked brand count.','Prepared right, some lectins come back.'],
+      ['knife','#E8735A','Peel and deseed','Tomatoes, peppers, cucumbers, squash','Peel and remove the seeds before eating, which is where he says most of the lectins sit.','Peel it, deseed it.'],
+      ['pill','#AC9FF2','The disruptor audit','Once, then as things run out','Look at the seven disruptors in your house: painkillers, antacids, antibiotics, sweeteners, plastics and personal-care products, glyphosate-sprayed food, and screens at night. Replace what you can. Talk to your doctor before dropping any medication.','Not only the pantry.'],
+      ['apple','#E58BB0','Fruit in season','All year','Eat fruit in its local season and in small amounts. Treat it as dessert.','Fruit is candy.'],
+      ['clock','#F2C230','The eating window','Phase 3 and after','Pick one: a daily eating window, longer gaps between meals, or a regular short vegan fast. Start gently.','Eat less often.']
+    ]
+  },
+  extra:'yesno',
+  caveat:'<b>Worth knowing.</b> Gundry\'s lectin argument is contested. Many nutrition researchers point out that cooking breaks down most lectins and that beans and whole grains are linked with good health in large population studies. This page summarizes his case faithfully; it is not medical advice, and it is worth bringing any big change to your own doctor.'
+},
+/* ── On the shelf, not opened yet. In the order Christopher listed them, 2026-10-22. ── */
+{id:'four-agreements', title:'The Four Agreements', author:'Don Miguel Ruiz', status:'read', a:'#D9A648', rec:[]},
+{id:'mastery-of-love', title:'The Mastery of Love', author:'Don Miguel Ruiz', status:'read', a:'#E58BB0', rec:[]},
+{id:'lion-tracker', title:'The Lion Tracker\'s Guide to Life', author:'Boyd Varty', status:'read', a:'#E8732A', rec:[['Kyle Kingsbury','']]},
+{id:'alchemist', title:'The Alchemist', author:'Paulo Coelho', status:'read', a:'#F2C230', rec:[['Peter Evans','The wizard'],['Patty Hager','My mom']], held:1},
+{id:'man-of-zero', title:'The Man of Zero', author:'David Deida', status:'read', a:'#8FB0F0', rec:[], held:1},
+{id:'body-keeps-score', title:'The Body Keeps the Score', author:'Bessel van der Kolk, MD', status:'read', a:'#C8242B', rec:[]},
+{id:'aflame', title:'Aflame', author:'Pico Iyer', status:'read', a:'#E8735A', rec:[['Pop Pop Hager','My dad']], held:1},
+{id:'ra-contact', title:'The Ra Contact', author:'Don Elkins, Carla Rueckert, Jim McCarty', status:'read', a:'#AC9FF2', fav:true, rec:[['Austin West','Brother']]},
+{id:'autobiography-yogi', title:'Autobiography of a Yogi', author:'Paramahansa Yogananda', status:'read', a:'#F5A066', fav:true, rec:[]},
+{id:'iron-john', title:'Iron John', author:'Robert Bly', status:'read', a:'#A57626', rec:[['Mindi Rivin',''],['Peter Evans','The wizard']]},
+{id:'erotic-holy', title:'The Erotic and the Holy', author:'Marc Gafni', status:'read', a:'#C8242B', rec:[]},
+{id:'superior-man', title:'The Way of the Superior Man', author:'David Deida', status:'read', a:'#2C5FC4', rec:[]},
+{id:'dear-lover', title:'Dear Lover', author:'David Deida', status:'read', a:'#E58BB0', rec:[]},
+{id:'love-yourself', title:'Love Yourself Like Your Life Depends on It', author:'Kamal Ravikant', status:'read', a:'#E8735A', rec:[]},
+{id:'awareness', title:'Awareness', author:'Anthony de Mello', status:'read', a:'#5FC0AE', rec:[]},
+{id:'waking-up', title:'Waking Up', author:'Sam Harris', status:'read', a:'#8FB0F0', rec:[]},
+{id:'ethical-slut', title:'The Ethical Slut', author:'Janet W. Hardy and Dossie Easton', status:'read', a:'#E89AB4', rec:[]},
+{id:'untethered-soul', title:'The Untethered Soul', author:'Michael A. Singer', status:'read', a:'#7FD6A2', fav:true, rec:[]},
+{id:'sex-at-dawn', title:'Sex at Dawn', author:'Christopher Ryan and Cacilda Jethá', status:'read', a:'#F2C230', rec:[]},
+{id:'untrue', title:'Untrue', author:'Wednesday Martin, PhD', status:'read', a:'#9B5FD0', rec:[]},
+{id:'nvc', title:'Nonviolent Communication', author:'Marshall B. Rosenberg, PhD', status:'read', a:'#3FA86A', rec:[]},
+{id:'change-your-mind', title:'How to Change Your Mind', author:'Michael Pollan', status:'read', a:'#AC9FF2', rec:[]},
+{id:'start-with-why', title:'Start with Why', author:'Simon Sinek', status:'read', a:'#E8732A', rec:[]},
+{id:'stealing-fire', title:'Stealing Fire', author:'Steven Kotler and Jamie Wheal', status:'read', a:'#C8242B', rec:[]},
+{id:'extreme-ownership', title:'Extreme Ownership', author:'Jocko Willink and Leif Babin', status:'read', a:'#A57626', rec:[]}
+];
+
+const LESSONS = {
+L1:{
+  part:'The Way of the Heart', num:1, word:'One', title:'The Way <em>Home</em>', plain:'The Way Home',
+  breath:'Your experience follows <em>where you put your attention</em>, and nothing outside you causes it. Stop blaming, admit you don\'t know how to undo the mess, and hand it to something larger. The heart leads. The intellect serves. Whatever comes up is welcome, <em>looked at with a child\'s wonder</em>, and let go.',
+  myRead:'For me this lesson is about truth. Remembering the truth of who I am, and being able to speak my truth. The more I come into that truth and live from the heart, the more I realize I can let the distortions go. It\'s about letting go.',
+  moves:[
+    ['He comes to love, not to teach','Jeshua opens by saying he is not here to teach anyone. He is here to love us until we choose, from deep inside, to set down every illusion we gave weight to and remember the truth. In truth we already rest in communion with all of creation. We just turned our attention somewhere else.'],
+    ['Attention makes experience','What you feel is the effect of where you choose to focus. Nobody is ahead and nobody is behind. You cannot be a victim of what you see, and nothing is outside of you. Even disliking what you called in is one more thing you called in: the experience of judging yourself.'],
+    ['The suffering is in the gripping','Choosing to see something other than love is not the problem. Identifying with whatever arises in your awareness is, and that is where innocence gets lost. Every event is neutral and can be seen any way you like. Seriousness is what builds the ego; taking the play seriously is what holds the old vibrations in place.'],
+    ['The first step: no one is to blame','The doorway is one axiom: nothing you are experiencing is caused by anything outside you. Then you say it plainly. I did this, I must correct it, no one is to blame, the world is innocent. Then comes the humility. I don\'t know how I did it, so I have to surrender to something beyond me.'],
+    ['The heart leads, the intellect serves','The intellect was never meant to be the master. It was built to be the humble servant of the awakened heart. The heart feels, embraces, trusts and allows all things. This is a path of truthfulness, not avoidance, and not a path of progress badges or earning God\'s approval.'],
+    ['What if it is all being sent?','What if every experience since you decided to wake up is being sent on purpose, and the very things you resist are the stepping stones home? The street sweeper: you breathe, say "Father, you know the way home," and start sweeping. When the thought comes up that nobody will see you as special, you recognize that as exactly what needed to surface.'],
+    ['Be a wise gardener','You are not here to fix the world, or to fix anyone in it. Only love heals, and until you have loved yourself wholly you do not really love anyone. Tend what is growing in you. Fence it if you have to, and ask those who trample it to leave, until it is strong enough to feed even them.'],
+    ['Stay in the room','Commitment means you do not leave the room when the shouting starts, and the shouting is inside your own mind, body and emotions. Look at the darkest part of your shadow with a child\'s wonder. Dance with the devil until you recognize his face as your own, and the darkness becomes an angel.'],
+    ['Awakening is remembering','In the end you have journeyed nowhere. You arrive and find someone got there ahead of you, your own Self, there all along and forgotten. The remembering is not an idea. It moves through the whole body, down to the cells. Meanwhile: dance, rejoice, play, and give your Creator permission to sweep the basement clean.']
+  ],
+  takeaways:[
+    ['eye','#F2C230','Nothing out there is doing it to me','My state follows my attention. The moment I see that, I am no longer a victim of anything, including my own mood.','nothing which you are experiencing is caused by anything outside of you.'],
+    ['key','#E8735A','Blame is a locked door','"The world is innocent" is the key. It does not excuse anyone. It hands the power back to the only place it can be used.','I did it, I must correct it. No one is to blame. The world is innocent.'],
+    ['mask','#AC9FF2','The feeling isn\'t the problem. Gripping it is','Pain comes from identifying with what arises, not from the arising. I can feel it fully and still not become it.','all events are perfectly neutral, and you are free to see them any way you want.'],
+    ['feather','#7FD6A2','Lightness is part of the practice','Seriousness is the glue that holds the ego together. Play, dancing and laughter are not breaks from the work. They are the work.','it is seriousness within the mind which is the creation of ego'],
+    ['heart','#E58BB0','Lead with the heart and the body','The intellect is a good servant and a poor god. Feeling knows things thinking cannot reach.','The Heart is that which feels all things, embraces all things, trusts all things, allows all things.'],
+    ['sun','#D9A648','Truthfulness, not avoidance','The path asks for honesty all the way through, including telling a friend the truth of my feelings. No deception, no managing, no control.','the pathway of awakening is not a pathway of avoidance, but a pathway of truthfulness.'],
+    ['spark','#8FB0F0','No progress badges','The wish to be special, or to have "made progress," is one more thing to let go. The wisest are the humblest.','Accept where you are and don\'t pretend to be otherwise, for the wisest are always the humblest.'],
+    ['door','#5FC0AE','What I resist may be the curriculum','The thing I push against might be exactly what was sent to bring me home. Let things be as they are, and look at what they stir.','What if the very things you are resisting are the very stepping stones to your homecoming?'],
+    ['seed','#7FD6A2','Love myself first','I am not here to fix my brother or sister. Loving myself wholly is what lets love move through me to anyone else.','\'Tis only Love that heals.'],
+    ['leaf','#F2C230','Protecting what grows is wisdom','A fence around something tender is not unkindness. It is good gardening, until the garden can feed everyone.','Be you, therefore, a wise gardener. Cultivate a deep love and respect for yourself'],
+    ['wind','#AC9FF2','Letting go is withdrawing value','I let go by taking my attention and importance back from what I identified with. Less of who I thought I was, more of who I am.','you come more and more to be less and less.'],
+    ['moon','#E8735A','I never left','Awakening is remembering, not arriving. The Self I am looking for got there ahead of me.','Ahhh, it\'s my Self. I\'ve always been there, but I forgot.']
+  ],
+  remember:[
+    ['I come not to teach you, but to love you.'],
+    ['Is this an energy I wish to continue in, or would I choose something else?'],
+    ['No one is to blame. The world is innocent.'],
+    ['All events are perfectly neutral, and you are free to see them any way you want.'],
+    ['It is seriousness within the mind which is the creation of ego.'],
+    ['The pathway of awakening is not a pathway of avoidance, but a pathway of truthfulness.'],
+    ['What if the very things you are resisting are the very stepping stones to your homecoming?'],
+    ['Father, you know the way home.'],
+    ['\'Tis only Love that heals.'],
+    ['Commitment means that you don\'t get to leave the room when the shouting begins.'],
+    ['To awaken means to have journeyed nowhere.'],
+    ['The Way of the Heart does not know the word avoidance.'],
+    ['There really isn\'t anything down there worth defending or protecting.'],
+    ['You have asked. I picked up the phone. We are in communication.']
+  ],
+  practices:[
+    ['fork','#F2C230','The fork in the road','When a feeling arrives that you don\'t love','Don\'t fight it and don\'t fix it. Look at it the way a child would, feel what it feels like, then ask the question.','Is this an energy I wish to continue in, or would I choose something else?'],
+    ['key','#E8735A','The first step','Any time you catch yourself blaming: someone, the world, or yourself','Stop and say it, out loud if you can. It is not a confession. It is taking your power back.','I\'ve done this to myself. I did it, I must correct it. No one is to blame. The world is innocent.'],
+    ['hand','#AC9FF2','The surrender','When you notice you\'re trying to fix your peace with the same mind that lost it','Admit you don\'t know how you built this, so you can\'t be the one to take it apart. Hand it over.','I have done all this; I must undo it. But I have no idea how I did this. Therefore, I must surrender to something else.'],
+    ['broom','#D9A648','Sweep the street','When life hands you the task you think is beneath you, or the thing you\'ve been resisting','Take a deep breath, say the line, and begin. Watch what comes up (I won\'t be seen, I won\'t be special) and recognize it as exactly what was meant to surface.','Father, you know the way home.'],
+    ['mask','#E58BB0','Oh, how about that','When you meet your own shadow','Don\'t fight the darkness. Recognize it, embrace it as your own creation, and choose again. Marvel at it the way a child marvels at anything.','Oh, how about that!'],
+    ['door','#5FC0AE','Stay in the room','When the shouting starts inside: mind, body or emotions','Don\'t leave. Be honest about what is there, and love yourself for even having the power to create something that wild.','Commitment means I don\'t leave the room when the shouting begins.'],
+    ['leaf','#7FD6A2','The wise gardener','When something new in you is still tender','Tend it: weed, water, watch the weather. Cover it while it grows. Ask those who don\'t respect it to leave, or build a fence for now, until it bears enough fruit to share.','I am not here to fix the world. I am here to tend this garden.'],
+    ['wind','#8FB0F0','The letting-go breath','Daily, and to close any sitting with this lesson','Close your eyes. Breathe deep into the body and let it go. As the breath leaves, hold the thought. Commit to happiness as fully as you once committed to unhappiness, and give your Creator permission to sweep the basement clean.','There is nothing worth holding onto that keeps my peace and happiness at arm\'s length.'],
+    ['sun','#F2C230','Every breath a prayer','All day, in the ordinary moments','Return to empty-headedness and not-knowing with each breath, and let every event become part of your meditation.','Not my will, but Thine be done.']
+  ],
+  qa:[
+    'What moves an awakened being through the day, and how can someone be one with Source and still be a distinct self?',
+    'Sexuality and sexual expression for people committed to a spiritual path.',
+    'Healing as A Course in Miracles describes it, and what has to happen for symptoms in the body to leave.'
+  ],
+  source:'Read from the full text of Lesson One. The three Q&As are not yet folded in.'
+}
+};
+
+const YESNO = {
+  yes:[
+    ['Greens','Leafy greens of every kind, cruciferous vegetables (broccoli, cauliflower, cabbage, Brussels sprouts, kale), asparagus, onions, garlic, mushrooms'],
+    ['Starches','Resistant starches: sweet potato, yams, taro, cassava, green banana, and the two grains he allows, millet and sorghum'],
+    ['Fats','Extra-virgin olive oil, avocado and avocado oil, coconut and MCT oil, macadamia and walnut oil'],
+    ['Nuts','Walnuts, macadamias, pistachios, pecans, hazelnuts, almonds (skinned)'],
+    ['Protein','Wild fish and shellfish, pastured eggs, pastured poultry, grass-fed meat in smaller amounts'],
+    ['Dairy','Goat, sheep and buffalo, A2 cow milk, aged cheeses from Europe'],
+    ['Treats','Dark chocolate of 72% or more, berries in season']
+  ],
+  no:[
+    ['Grains','Wheat, rice, oats, barley, corn, and anything made from them, whole grain included'],
+    ['Legumes','Beans, lentils, peas, peanuts, soy, unless pressure-cooked'],
+    ['Nightshades','Tomatoes, peppers, eggplant, goji, unless peeled and deseeded; white potatoes'],
+    ['Seeded veg','Squash, zucchini, cucumbers, melons, unless peeled and deseeded'],
+    ['Seeds & oils','Pumpkin, sunflower and chia seeds, cashews; soy, corn, canola, peanut and sunflower oils'],
+    ['Sugar','Sugar and artificial sweeteners; fruit out of season'],
+    ['Animals','Corn- and soy-fed meat and poultry, farmed fish, most A1 cow\'s milk']
+  ]
+};
+
+/* ════════════════════════════════════════════════════════════ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const initials = n => n.split(/\s+/).filter(w=>/^[A-Z]/.test(w)).slice(0,2).map(w=>w[0]).join('');
+
+/* Covers */
+function wrap(text, max){
+  const out=[]; let line='';
+  text.split(' ').forEach(w => { if((line+' '+w).trim().length>max && line){ out.push(line); line=w; } else line=(line+' '+w).trim(); });
+  if(line) out.push(line); return out;
+}
+const COVERS = {
+  mastery: () => `<svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice">
+    <defs><radialGradient id="cm" cx="50%" cy="42%" r="70%"><stop offset="0" stop-color="#8A2A34"/><stop offset=".6" stop-color="#4A1424"/><stop offset="1" stop-color="#22091A"/></radialGradient>
+    <radialGradient id="cg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F7D46A" stop-opacity=".6"/><stop offset="1" stop-color="#F7D46A" stop-opacity="0"/></radialGradient></defs>
+    <rect width="200" height="300" fill="url(#cm)"/>
+    <rect x="12" y="12" width="176" height="276" fill="none" stroke="#D9A648" stroke-opacity=".55"/>
+    <circle cx="100" cy="128" r="62" fill="url(#cg)"/>
+    ${Array.from({length:24},(_,i)=>{const t=i*Math.PI/12, r1=40, r2=i%2?54:62; return `<line x1="${100+r1*Math.cos(t)}" y1="${128+r1*Math.sin(t)}" x2="${100+r2*Math.cos(t)}" y2="${128+r2*Math.sin(t)}" stroke="#F2C230" stroke-opacity=".7" stroke-width="1.2"/>`}).join('')}
+    <path d="M100 150 C82 138 74 124 82 114 C88 107 97 109 100 117 C103 109 112 107 118 114 C126 124 118 138 100 150 Z" fill="#E8735A" stroke="#F7D46A" stroke-width="1.4"/>
+    <text x="100" y="222" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="25" fill="#fff">The Way</text>
+    <text x="100" y="250" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-style="italic" font-size="27" fill="#F2C230">of Mastery</text>
+    <text x="100" y="276" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" letter-spacing="2.4" fill="#EFE7DA" fill-opacity=".7">JESHUA · JAYEM</text>
+  </svg>`,
+  meditations: () => `<svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="cmd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A2A1C"/><stop offset="1" stop-color="#160F0A"/></linearGradient></defs>
+    <rect width="200" height="300" fill="url(#cmd)"/>
+    <rect x="12" y="12" width="176" height="276" fill="none" stroke="#C9A25A" stroke-opacity=".6"/>
+    <circle cx="100" cy="112" r="50" fill="none" stroke="#C9A25A" stroke-opacity=".35"/>
+    ${[...Array(9)].map((_,i)=>{const a=(200+i*16)*Math.PI/180; const x=100+46*Math.cos(a), y=112+46*Math.sin(a); return `<ellipse cx="${x}" cy="${y}" rx="8" ry="3.4" transform="rotate(${200+i*16+70} ${x} ${y})" fill="#7FD6A2" fill-opacity=".75"/>`}).join('')}
+    ${[...Array(9)].map((_,i)=>{const a=(-20-i*16)*Math.PI/180; const x=100+46*Math.cos(a), y=112-46*Math.sin(a)*-1; return `<ellipse cx="${x}" cy="${y}" rx="8" ry="3.4" transform="rotate(${-20-i*16-70} ${x} ${y})" fill="#7FD6A2" fill-opacity=".75"/>`}).join('')}
+    <text x="100" y="124" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="34" fill="#F2C230">M·A</text>
+    <text x="100" y="222" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-style="italic" font-size="32" fill="#fff">Meditations</text>
+    <line x1="64" y1="238" x2="136" y2="238" stroke="#C9A25A" stroke-opacity=".6"/>
+    <text x="100" y="264" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" letter-spacing="2.4" fill="#EFE7DA" fill-opacity=".7">MARCUS AURELIUS</text>
+  </svg>`,
+  paradox: () => `<svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="cpp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1D3A2C"/><stop offset="1" stop-color="#0E1A14"/></linearGradient></defs>
+    <rect width="200" height="300" fill="url(#cpp)"/>
+    <rect x="12" y="12" width="176" height="276" fill="none" stroke="#7FD6A2" stroke-opacity=".5"/>
+    <path d="M100 52 L140 66 V104 C140 132 122 150 100 160 C78 150 60 132 60 104 V66 Z" fill="none" stroke="#F2C230" stroke-width="1.6" stroke-opacity=".8"/>
+    <path d="M78 138 C78 104 96 84 126 78 C122 110 106 132 78 138 Z" fill="#7FD6A2" fill-opacity=".85"/>
+    <path d="M78 138 L112 98" stroke="#0E1A14" stroke-width="1.4"/>
+    <text x="100" y="212" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="26" fill="#fff">The Plant</text>
+    <text x="100" y="240" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-style="italic" font-size="28" fill="#7FD6A2">Paradox</text>
+    <text x="100" y="268" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" letter-spacing="2.4" fill="#EFE7DA" fill-opacity=".7">STEVEN R. GUNDRY, MD</text>
+  </svg>`,
+  generic: b => {
+    const lines = wrap(b.title, b.title.length > 26 ? 13 : 11), fs = lines.length > 3 ? 20 : 24, y0 = 150 - (lines.length-1)*fs*0.58;
+    const auth = wrap(b.author.toUpperCase(), 24);
+    return `<svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice">
+    <rect width="200" height="300" fill="#1E0F24"/>
+    <rect width="200" height="300" fill="${b.a}" fill-opacity=".2"/>
+    <rect x="0" y="0" width="200" height="56" fill="${b.a}" fill-opacity=".55"/>
+    <rect x="12" y="12" width="176" height="276" fill="none" stroke="${b.a}" stroke-opacity=".7"/>
+    <circle cx="100" cy="56" r="7" fill="#1E0F24" stroke="${b.a}" stroke-width="1.5"/>
+    ${lines.map((l,i)=>`<text x="100" y="${y0+i*fs*1.15}" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="${fs}" fill="#fff">${esc(l)}</text>`).join('')}
+    <line x1="74" y1="232" x2="126" y2="232" stroke="${b.a}" stroke-opacity=".7"/>
+    ${auth.map((l,i)=>`<text x="100" y="${252+i*12}" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7" letter-spacing="1.8" fill="#EFE7DA" fill-opacity=".72">${esc(l)}</text>`).join('')}
+  </svg>`;}
+};
+const coverOf = b => (COVERS[b.cover] || COVERS.generic)(b);
+
+/* Hero art per book */
+const HEROES = {
+  heart: () => `<svg class="sun-art" viewBox="0 0 300 260" aria-hidden="true">
+    <defs><radialGradient id="hs" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F7D46A" stop-opacity=".55"/><stop offset=".5" stop-color="#E8735A" stop-opacity=".18"/><stop offset="1" stop-color="#E8735A" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="150" cy="130" r="122" fill="url(#hs)"/>
+    <g class="rays">${Array.from({length:36},(_,i)=>{const t=i*Math.PI/18, r1=66, r2=i%3===0?118:i%3===1?96:84; return `<line x1="${150+r1*Math.cos(t)}" y1="${130+r1*Math.sin(t)}" x2="${150+r2*Math.cos(t)}" y2="${130+r2*Math.sin(t)}" stroke="${i%3===0?'#F2C230':'#D9A648'}" stroke-opacity="${i%3===0?.8:.4}" stroke-width="${i%3===0?1.8:1.1}" stroke-linecap="round"/>`}).join('')}</g>
+    <circle cx="150" cy="130" r="58" fill="none" stroke="#D9A648" stroke-opacity=".5"/>
+    <g class="beat"><path d="M150 166 C120 146 108 124 120 108 C130 96 145 100 150 112 C155 100 170 96 180 108 C192 124 180 146 150 166 Z" fill="#E8735A" stroke="#F7D46A" stroke-width="2"/><path d="M150 112 V150" stroke="#F7D46A" stroke-opacity=".6" stroke-width="1.2"/></g>
+  </svg>`,
+  laurel: () => `<svg class="sun-art" viewBox="0 0 300 260" aria-hidden="true">
+    <defs><radialGradient id="hl" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#C9A25A" stop-opacity=".4"/><stop offset="1" stop-color="#C9A25A" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="150" cy="128" r="122" fill="url(#hl)"/>
+    <g class="rays"><circle cx="150" cy="128" r="104" fill="none" stroke="#C9A25A" stroke-opacity=".25" stroke-dasharray="2 7"/></g>
+    ${[...Array(11)].map((_,i)=>{const a=(110+i*13)*Math.PI/180; const x=150+78*Math.cos(a), y=128+78*Math.sin(a); return `<ellipse cx="${x}" cy="${y}" rx="13" ry="5.5" transform="rotate(${110+i*13+70} ${x} ${y})" fill="#7FD6A2" fill-opacity="${.5+i*.04}"/>`}).join('')}
+    ${[...Array(11)].map((_,i)=>{const a=(70-i*13)*Math.PI/180; const x=150+78*Math.cos(a), y=128+78*Math.sin(a); return `<ellipse cx="${x}" cy="${y}" rx="13" ry="5.5" transform="rotate(${70-i*13-70} ${x} ${y})" fill="#7FD6A2" fill-opacity="${.5+i*.04}"/>`}).join('')}
+    <g class="beat"><circle cx="150" cy="128" r="44" fill="#1B0C20" stroke="#F2C230" stroke-width="1.6"/>
+    <text x="150" y="141" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="38" fill="#F2C230">M·A</text></g>
+  </svg>`,
+  leaf: () => `<svg class="sun-art" viewBox="0 0 300 260" aria-hidden="true">
+    <defs><radialGradient id="hp" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#7FD6A2" stop-opacity=".38"/><stop offset="1" stop-color="#7FD6A2" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="150" cy="128" r="122" fill="url(#hp)"/>
+    <path d="M150 34 L216 58 V122 C216 168 186 198 150 214 C114 198 84 168 84 122 V58 Z" fill="none" stroke="#F2C230" stroke-width="2" stroke-opacity=".75"/>
+    <g class="beat"><path d="M112 176 C112 120 140 88 192 78 C186 132 160 168 112 176 Z" fill="#7FD6A2" fill-opacity=".9"/><path d="M112 176 L170 108" stroke="#1B0C20" stroke-width="2"/>
+    ${[[126,152],[138,138],[150,124],[160,112]].map(([x,y])=>`<path d="M${x} ${y} l14 4" stroke="#1B0C20" stroke-width="1.4"/>`).join('')}</g>
+  </svg>`,
+  book: b => `<div style="width:min(170px,44vw);margin:4px auto 18px">${coverOf(b)}</div>`
+};
+
+/* ── Shelf ── */
+let filter = 'all';
+const FILTERS = [['all','All'],['reading','Reading now'],['done','Summarized'],['fav','Favorites']];
+const isDone = b => !!b.summary;
+function shelfOrder(){
+  const rank = b => b.status==='reading' ? 0 : isDone(b) ? 1 : 2;
+  return BOOKS.map((b,i)=>[b,i]).sort((x,y)=>rank(x[0])-rank(y[0]) || x[1]-y[1]).map(x=>x[0]);
+}
+function recLine(b){
+  const names = (b.rec||[]).map(r=>r[0].split(' ')[0]);
+  const n = names.length + (b.held||0);
+  if(!n) return '';
+  return 'Recommended by ' + (names.length ? names.join(', ') + (b.held ? ` +${b.held}` : '') : `${b.held}`);
+}
+function renderShelf(){
+  const done = BOOKS.filter(isDone).length;
+  $('#shelf-stats').innerHTML = `<span class="chip"><b>${BOOKS.length}</b> books on the shelf</span><span class="chip"><b>${done}</b> opened up</span><span class="chip"><b>${BOOKS.length-done}</b> still to open</span>`;
+  $('#filters').innerHTML = FILTERS.map(([k,l])=>`<button class="fbtn" data-f="${k}" aria-pressed="${filter===k}">${l}</button>`).join('');
+  const list = shelfOrder().filter(b => filter==='all' || (filter==='reading'&&b.status==='reading') || (filter==='done'&&isDone(b)) || (filter==='fav'&&b.fav));
+  $('#shelf').innerHTML = list.length ? list.map(b => {
+    const rib = b.status==='reading' ? 'Reading now' : '';
+    const line = recLine(b);
+    return `<a class="book" href="#${b.id}" style="--a:${b.a}" aria-label="Open ${esc(b.title)}">
+      <div class="stand"><div class="cover">${rib?`<span class="ribbon">${rib}</span>`:''}${b.fav?'<span class="fav" title="One of my favorites">★</span>':''}${coverOf(b)}</div></div>
+      <div class="label"><small>${esc(b.with||b.author)}</small><b>${esc(b.title)}</b>${b.with?`<span>${esc(b.author)}</span>`:''}
+      <i class="${isDone(b)?'done':''}">${isDone(b)?'● Summarized':'○ Summary coming'}${line?`<br>${esc(line)}`:''}</i></div>
+    </a>`;}).join('') : '<p style="color:var(--faint);grid-column:1/-1">Nothing here yet.</p>';
+  document.querySelectorAll('.fbtn').forEach(b => b.onclick = () => { filter = b.dataset.f; renderShelf(); });
+}
+
+/* ── Shared blocks ── */
+function recBlock(b){
+  const people = (b.rec||[]).map(([n,r]) => `<div class="rec" style="--a:${b.a}"><div class="av">${esc(initials(n))}</div><div><b>${esc(n)}</b>${r?`<small>${esc(r)}</small>`:''}</div></div>`).join('');
+  const held = b.held ? `<div class="rec empty"><div class="av">+${b.held}</div><div><b>${b.held} more to add</b><small>Waiting on my OK</small></div></div>` : '';
+  const empty = !(b.rec||[]).length && !b.held
+    ? `<div class="rec empty"><div class="av">?</div><div><b>Not remembered yet</b><small>Add when it comes back</small></div></div>`
+    : `<div class="rec empty"><div class="av">+</div><div><b>Room for more</b><small>Who else pointed me here</small></div></div>`;
+  return `<section class="recband"><div class="wide">
+    <div class="sec-head" style="margin-bottom:22px"><div><p class="eyebrow">Recommended by</p><h2>Who put it <em>in my hands</em></h2></div></div>
+    <div class="recs">${people}${held}${empty}</div></div></section>`;
+}
+function coreBlocks(C, key){
+  const remCite = r => r[1] ? `<cite>${esc(r[1])}</cite>` : '';
+  return `
+    <div class="block">
+      <div class="block-head"><div><h3>What to <em>take from it</em></h3><p>Turned toward my own life. Tap any card for where it comes from.</p></div><div class="count">${String(C.takeaways.length).padStart(2,'0')}</div></div>
+      <div class="cards">${C.takeaways.map(([ic,k,h,p,q])=>`<div class="tk rv" style="--k:${k}"><div class="ico">${I(ic)}</div><h5>${esc(h)}</h5><p>${esc(p)}</p><details><summary>${C.remPlain?'More':'From the text'}</summary><blockquote>${esc(q)}</blockquote></details></div>`).join('')}</div>
+    </div>
+    <div class="block">
+      <div class="block-head"><div><h3>Things to <em>remember</em></h3><p>${C.remPlain?'The principles, short enough to carry.':'Lines straight from the text, short enough to carry.'}</p></div><div class="count">${String(C.remember.length).padStart(2,'0')}</div></div>
+      <div class="carry"><div><small>Carry this one today</small><q id="carry-${key}" ${C.remPlain?'style="quotes:none"':''}>${esc(C.remember[0][0])}</q><cite id="cite-${key}">${esc(C.remember[0][1]||'')}</cite></div><button class="draw" data-draw="${key}">Draw another</button></div>
+      <div class="quotes">${C.remember.map(r=>`<div class="qc rv${C.remPlain?' plain':''}"><p>${esc(r[0])}</p>${remCite(r)}</div>`).join('')}</div>
+    </div>
+    <div class="block">
+      <div class="block-head"><div><h3>The <em>practices</em></h3><p>What to actually do, when to reach for it, and what to say.</p></div><div class="count">${String(C.practices.length).padStart(2,'0')}</div></div>
+      <div class="pr">${C.practices.map(([ic,p,h,w,d,s])=>`<div class="prc rv" style="--p:${p}"><div class="top"><div class="ico">${I(ic,20)}</div><div><h4>${esc(h)}</h4><span class="when">${esc(w)}</span></div></div><p>${esc(d)}</p><div class="say"><small>Say or hold</small>${esc(s)}</div></div>`).join('')}</div>
+    </div>`;
+}
+const DRAW = {};
+
+/* ── Book ── */
+function renderBook(b){
+  const hero = (HEROES[b.hero] || HEROES.book)(b);
+  const kick = b.status==='reading' ? `Reading now${b.with?' · '+esc(b.with):''}` : isDone(b) ? 'Read · Summarized' : 'Read · Summary coming';
+  let body = '';
+
+  if (b.summary === 'lessons') {
+    b.parts.flatMap(p=>p.lessons).forEach(id => { DRAW[id] = LESSONS[id].remember; });
+    const side = `<div class="parts">${b.parts.map(p=>`
+          <div class="part${p.lessons.length?'':' dim'}" style="--p:${p.p}">
+            <small>${p.n}${p.count?` · ${p.count} lessons`:''}</small><h4>${p.name}</h4><p>${p.d}</p>
+            ${p.count?`<div class="pips">${Array.from({length:p.count},(_,i)=>{const id=p.lessons[i]; return id?`<a class="pip on" href="#${b.id}/${id}" title="Lesson ${i+1}: ${esc(LESSONS[id].plain)}">${i+1}</a>`:`<span class="pip">${i+1}</span>`;}).join('')}</div>`:''}
+          </div>`).join('')}</div>`;
+    const nextPart = b.parts.find(p => p.count && p.lessons.length < p.count);
+    body = aboutBlock(b, side) + b.parts.flatMap(p=>p.lessons).map(id => renderLesson(id, b)).join('') +
+      `<div class="wide">${nextPart?`<div class="next"><small>Up next</small><b>${nextPart.name}, Lesson ${nextPart.lessons.length+1}</b><p>Still ahead of us. It lands here once Austin and I have read it.</p></div>`:''}</div>`;
+  } else if (b.summary === 'whole') {
+    DRAW[b.id] = b.core.remember;
+    const num = (c,i) => c.n || String(i+1);
+    const side = `<div class="toc-card"><small>${esc(b.chaptersLabel)}</small><div class="toc">${b.chapters.map((c,i)=>`<a href="#${b.id}/ch${i+1}"><span>${esc(num(c,i))}</span>${esc(c.t)}</a>`).join('')}</div></div>`;
+    const chs = `<section class="lesson" style="padding-top:70px"><div class="wide">
+      <div class="block-head"><div><h3>${esc(b.chaptersLabel.split(' ')[0])} by <em>${esc(b.chaptersLabel.split(' ').pop())}</em></h3><p>Tap any one to open it: what it says, a line from it, and what to pull out.</p></div><button class="expand" data-expand>Open all</button></div>
+      <div class="chs">${b.chapters.map((c,i)=>`
+        <details class="ch" id="${b.id}/ch${i+1}">
+          <summary><div class="n">${esc(num(c,i))}</div><div><span class="k">${esc(c.k)}</span><h4>${esc(c.t)}</h4><span class="tease">${esc(c.tease)}</span></div><div class="plus">${I('plus',14)}</div></summary>
+          <div class="chb">${c.p.map(p=>`<p>${esc(p)}</p>`).join('')}${c.q?`<div class="pull">${esc(c.q)}<cite>${esc(b.chapterWord)} ${esc(c.c)}</cite></div>`:''}<p class="take"><b>Pull out</b>${esc(c.take)}</p></div>
+        </details>`).join('')}</div>
+      ${coreBlocks(b.core, b.id)}
+      ${b.extra==='yesno' ? yesNoBlock() : ''}
+      ${b.caveat ? `<div class="caveat"><div class="ic">${I('eye',20)}</div><div>${b.caveat}</div></div>` : ''}
+    </div></section>`;
+    body = aboutBlock(b, side) + chs;
+  } else {
+    body = `<div class="wide"><div class="notyet"><small>On the shelf</small><b>Not opened up yet</b><p>This one is on the list. The whole-book summary, the takeaways, the lines to remember and the practices land here when we get to it.</p></div></div>`;
+  }
+
+  const closeLine = b.id==='way-of-mastery' ? 'Awakening is only <em>remembrance</em>. I\'ve always been there. I just forgot.'
+    : b.id==='meditations' ? 'No longer talk about what a good man should be. <em>Be one.</em>'
+    : b.id==='plant-paradox' ? 'Leaves over seeds. <em>Feed what protects you.</em>' : '';
+  $('#view-book').innerHTML = `
+  <header class="hero book-hero dots">
+    <div class="wide">
+      <nav class="crumb"><a href="https://hagerca.github.io/#healing"><img src="./assets/mark-light.png" alt="">The Alchemy Lab</a> <span>/</span> <a href="#" data-home>The Library</a> <span>/</span> <span>${esc(b.title)}</span></nav>
+      ${hero}
+      <p class="kicker">${kick}${b.fav?' · ★ One of my favorites':''}</p>
+      <h1>${b.titleHtml || esc(b.title)}</h1>
+      <p class="sub">${esc(b.author)}</p>
+      ${b.oneLine?`<p class="dek">${esc(b.oneLine)}</p>`:''}
+      ${b.stats?`<div class="meta-row">${b.stats.map(([n,l])=>`<span class="chip"><b>${n}</b> ${l}</span>`).join('')}</div>`:''}
+      <p style="margin-top:26px"><button class="back" data-home>← Back to the shelf</button></p>
+    </div>
+  </header>
+  ${recBlock(b)}
+  ${body}
+  <section class="close">
+    <div class="wide">
+      <img src="./assets/mark-light.png" alt="">
+      ${closeLine?`<p class="big">${closeLine}</p><p class="by">${esc(b.title)}</p>`:''}
+      <p style="margin-top:34px"><button class="back" data-home>← Back to the shelf</button></p>
+    </div>
+  </section>`;
+}
+function aboutBlock(b, side){
+  return `<section class="lede-block">
+    <div class="wide">
+      <div class="sec-head"><div><p class="eyebrow">The whole book</p><h2>What it is <em>about</em></h2></div></div>
+      <div class="whole">
+        <div>${b.whole.map(p=>`<p>${p}</p>`).join('')}<p class="note-sm">${esc(b.wholeNote)}</p></div>
+        ${side}
+      </div>
+    </div>
+  </section>`;
+}
+function yesNoBlock(){
+  const col = (k,y,title,sub) => `<div style="--y:${y}"><h4>${title}</h4><p>${sub}</p><dl>${YESNO[k].map(([t,d])=>`<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join('')}</dl></div>`;
+  return `<div class="block">
+    <div class="block-head"><div><h3>The <em>lists</em></h3><p>His Yes and No lists, simplified. The book has the full version with brands and edge cases.</p></div></div>
+    <div class="yn">${col('yes','#7FD6A2','<em>Yes</em>, eat these','The foundation of Phase 2 and after.')}${col('no','#E8735A','<em>No</em>, or not yet','Out in Phase 2. Some return later if prepared right.')}</div>
+  </div>`;
+}
+
+function renderLesson(id, b){
+  const L = LESSONS[id];
+  return `
+  <section class="lesson" id="${b.id}/${id}">
+    <div class="wide">
+      <div class="lesson-head">
+        <p class="eyebrow">${esc(L.part)} · Lesson ${L.word}</p>
+        <h2>${L.title}</h2>
+        <div class="tag-row"><span class="chip"><b>${L.moves.length}</b> movements</span><span class="chip"><b>${L.takeaways.length}</b> takeaways</span><span class="chip"><b>${L.practices.length}</b> practices</span></div>
+      </div>
+      <p class="breath">${L.breath}</p>
+      <div class="myread"><div class="ic">${I('heart',20)}</div><div><h4>My read</h4><p>${esc(L.myRead)}</p></div></div>
+      <div class="block">
+        <div class="block-head"><div><h3>The teaching, <em>in order</em></h3><p>How the lesson moves, start to finish, in plain words.</p></div><div class="count">${String(L.moves.length).padStart(2,'0')}</div></div>
+        <div class="moves">${L.moves.map(([h,p],i)=>`<div class="move rv"><div class="n">${i+1}</div><div><h4>${esc(h)}</h4><p>${esc(p)}</p></div></div>`).join('')}</div>
+      </div>
+      ${coreBlocks(L, id)}
+      <div class="block">
+        <div class="block-head"><div><h3>Also in this <em>lesson</em></h3><p>${esc(L.source)}</p></div></div>
+        <div class="qa">${L.qa.map((q,i)=>`<div><small>Question ${i+1}</small><p>${esc(q)}</p></div>`).join('')}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ── Routing: #book, #book/L1, #book/ch3 ── */
+function route(){
+  const [bookId, sub] = location.hash.slice(1).split('/');
+  const b = BOOKS.find(x => x.id === bookId);
+  $('#view-shelf').hidden = !!b;
+  $('#view-book').hidden = !b;
+  if (b) {
+    renderBook(b);
+    document.title = `${b.title} · The Library · The Alchemy Lab`;
+    const target = sub && document.getElementById(`${b.id}/${sub}`);
+    if (target && target.tagName === 'DETAILS') target.open = true;
+    requestAnimationFrame(() => target ? target.scrollIntoView({behavior:'smooth'}) : scrollTo(0,0));
+    wire();
+  } else {
+    renderShelf();
+    document.title = 'The Library · My Healing · The Alchemy Lab';
+    scrollTo(0,0);
+  }
+}
+function wire(){
+  document.querySelectorAll('[data-home]').forEach(el => el.onclick = e => { e.preventDefault(); location.hash = ''; });
+  document.querySelectorAll('[data-draw]').forEach(btn => btn.onclick = () => {
+    const key = btn.dataset.draw, list = DRAW[key], q = document.getElementById('carry-'+key), c = document.getElementById('cite-'+key);
+    let next; do { next = list[Math.floor(Math.random()*list.length)]; } while (next[0] === q.textContent && list.length > 1);
+    q.classList.add('fade'); setTimeout(() => { q.textContent = next[0]; c.textContent = next[1]||''; q.classList.remove('fade'); }, 300);
+  });
+  const ex = document.querySelector('[data-expand]');
+  if (ex) ex.onclick = () => { const all = [...document.querySelectorAll('details.ch')]; const open = all.some(d=>!d.open); all.forEach(d=>d.open=open); ex.textContent = open ? 'Close all' : 'Open all'; };
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.1});
+  document.querySelectorAll('.rv').forEach((el,i) => { el.style.transitionDelay = (i%6)*60+'ms'; io.observe(el); });
+}
+addEventListener('hashchange', route);
+route();
+
+</script>
+</body>
+</html>
