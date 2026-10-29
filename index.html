@@ -320,6 +320,19 @@ footer a{color:var(--gold);}
   .sec-head{flex-direction:column;align-items:start;}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important;}.move,.tk,.qc,.prc{opacity:1;transform:none;}html{scroll-behavior:auto;}}
+/* WIZARD SHELF START */
+.wiz{padding:30px 0 70px;}
+.wiz .sec-head p.lede{margin:10px 0 0;color:var(--dim);max-width:40em;}
+.wiz .go{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--head);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#1B0C20;background:#D9A648;padding:10px 16px;border-radius:30px;text-decoration:none;}
+.wiz .go:hover{background:#F2C46A;}
+.wiz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:26px;}
+.wiz-grid a{display:grid;grid-template-columns:10px 1fr;gap:14px;text-decoration:none;background:rgba(239,231,218,.035);border:1px solid rgba(239,231,218,.09);border-radius:4px 8px 8px 4px;padding:14px 16px 14px 0;transition:transform .25s,border-color .25s;}
+.wiz-grid a:hover{transform:translateY(-2px);border-color:#D9A648;}
+.wiz-grid a i{border-radius:4px 0 0 4px;background:var(--s);}
+.wiz-grid b{display:block;font-family:var(--display);font-weight:400;font-size:1.22rem;line-height:1.15;color:#fff;}
+.wiz-grid small{display:block;font-family:var(--head);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#D9A648;margin:4px 0 6px;}
+.wiz-grid span{display:block;font-size:.88rem;color:var(--dim);line-height:1.45;}
+/* WIZARD SHELF END */
 </style>
 </head>
 <body>
@@ -369,6 +382,16 @@ footer a{color:var(--gold);}
     <div class="shelf" id="shelf"></div>
   </div>
 </section>
+<!-- WIZARD SHELF START -->
+<section class="wiz" id="wizard-shelf">
+  <div class="wide">
+    <div class="sec-head"><div><p class="eyebrow">The Wizard’s shelf</p><h2>What Peter <em>reads from</em></h2>
+      <p class="lede">Every book, text and image Peter Evans has named or handed out across his calls, 36 of them, with how he uses each one. Not books I have read yet: the next shelf, chosen by my teacher.</p>
+      <a class="go" href="https://hagerca.github.io/the-wizard/#library">Open the Wizard’s page →</a></div></div>
+    <div class="wiz-grid" id="wiz-grid"></div>
+  </div>
+</section>
+<!-- WIZARD SHELF END -->
 </div>
 
 <!-- ═══════════ A BOOK ═══════════ -->
@@ -1631,6 +1654,11 @@ function wire(){
 addEventListener('hashchange', route);
 route();
 
+/* WIZARD SHELF START */
+const WIZ_SHELF = [["The Door of Everything","Ruby Nelson","The invocation that opens nearly every call, read in full and never named on the call: love as you’ve never known or imagined it to be. His instruction: memorize it.","Mar 26, 2025 · 00:00"],["The Mystical Qabalah","Dion Fortune","The 1930s source of ‘God is pressure’, which he calls one of the most important things he ever heard.","Apr 29, 2026"],["The Tibetan Book of the Dead (Bardo Thödol)","Tibetan tradition","Read aloud to the dying and to the living: O nobly born, the three bardos, the 10,000 visions, Liberation Through Listening.","Mar 12, 2025 · ~28:40"],["The Psychedelic Experience","Timothy Leary, Ralph Metzner and Ram Dass","The manual based on the Book of the Dead that he found in 1987 or 1988; several passages he reads aloud match its wording.","Mar 26, 2025"],["Chakras: Energy Centers of Transformation","Harish Johari","Read as ‘yoga, the right-handed path’, and probably the chakra book behind his Manipura readings and many of the colouring images.","Mar 5, 2025"],["Tools for Tantra","Harish Johari","Probably this one (the transcript hears ‘Tool speak’): the yantras, the left-hand path, the Sri Yantra.","Mar 5, 2025"],["Celestial Gallery","Romio Shrestha","Tibetan deity paintings he holds up to the camera; ‘about 20 bucks’.","Mar 5, 2025"],["The Royal Road (later The Fool’s Pilgrimage)","Stephan A. Hoeller, probably","Kabbalistic tarot meditations he found in 1988, recorded to CD and coloured card by card. To a member who could not follow five sentences of it: then just color it in.","Mar 26, 2025 · ~52:24"],["Tarot decks: Marseille, Crowley and Rider-Waite","Various","Read as the old picture book of the soul, down to the Rider-Waite’s uncredited woman artist. We are the tarot deck.","Jul 8, 2026"],["Taoist Secrets of Love: Cultivating Male Sexual Energy","Mantak Chia","Recommended to me for holding sexual energy rather than leaking it; I read it under this title.","Journal · Aug 6, 2024"],["The Multi-Orgasmic Man","Mantak Chia","Recommended in the same breath, for Taoist sexual cultivation.","Journal · Aug 6, 2024"],["Awaken Healing Energy Through the Tao","Mantak Chia","Probably this one; recorded as ‘The healing energy of the Tao’. Mantak Chia’s advice: master the five elements first.","Journal · Aug 6, 2024"],["The Secret of the Golden Flower","Taoist classic","Given as a text for circulating light along the inner pathway.","Journal · Oct 16, 2025"],["Lao Tzu (probably the Tao Te Ching)","Lao Tzu","Named alongside the Golden Flower as a text for the inner alchemy work.","Journal · Oct 16, 2025"],["The Book of Mirdad","Mikhail Naimy","Named as a text for the same practice.","Journal · Oct 16, 2025"],["A Taoist ‘crystal chamber’ text","Mantak Chia’s system, probably","Read aloud: sealing the five senses, opening the crystal room, Kan and Li, stopping the essence train.","Jun 18, 2025"],["Christmas and Easter in the Initiatic Tradition","Omraam Mikhaël Aïvanhov","Named for the Christmas season, on the Nativity and the crucifixion as inner initiations.","Journal · Dec 19, 2024"],["The Shrine of Tibet","Not named","A collector’s catalogue of a Tibetan altar, ‘not a cheap book, this is like a hundred bucks’; thangkas as portable temples.","Mar 25, 2026"],["Alex Grey’s paintings","Alex Grey","The images inside the covers of the books he makes, sometimes next to a Hello Kitty sticker.","Mar 25, 2026"],["The Keys of Enoch","J.J. Hurtak","Named on the Fire Horse calls; a long line read on Jan 28, 2026 probably comes from it.","Mar 18, 2026"],["Osho’s talks","Osho","A passage on preparing for death, read on the call; Osho is what he read to his father as he died.","Mar 25, 2026"],["The Gene Keys","Richard Rudd","Used with a caution: find the gate in your bodygraph first, then read the key, or it is too vague.","Apr 29, 2026"],["Your own bodygraph","The free Human Design app","The assignment: download it, learn your type and authority, read the fucking manual.","Mar 18, 2026"],["The Power of Now","Eckhart Tolle","Named in passing on the call about inner authority.","Mar 18, 2026"],["The Bible","Various","John 10:9 ‘I am the door’, John 14:2 ‘many mansions’, Mark 8:36 inside the invocation, Psalm 46:10 ‘be still and know that I am God’.","Feb 26, 2025"],["The Gospel of Thomas, logion 22","Not named on the call","Quoted on making the two into one, the inner male and female.","May 27, 2026"],["Devi Mahatmya","Hindu scripture","Gauri, Kali and the demons Shumbha and Nishumbha, told during the yantra teaching.","Mar 5, 2025"],["The Diamond Sutra","Buddhist scripture","Named on the solstice call about mastering the stop.","Jun 18, 2025"],["Love You Forever","Robert Munsch","The children’s book he brought to a bedside teaching; I supplied the title.","Mar 12, 2025"],["The Sri Yantra","Image","A QR code for consciousness that only opens when you put your own hand on it; one hangs on his ceiling.","Mar 5, 2025"],["The elephant path (nine stages of shamatha)","Classic Tibetan image","The monk, the rope and the elephant turning from black to white as the mind is tamed; the diagram at the centre of Culadasa’s The Mind Illuminated, filed in my Peter folder.","Nov 2023"],["The book of life and death","Peter Evans, handmade","The hand-bound colouring and yantra book he made for me, my spell book: Ganesh, a lotus, the Sri Yantra, lions. Thirteen to fourteen hours went into the Ganesh.","Journal · Mar 4, 2025"],["The Inner Smile","Peter Evans, guided recording","A 36-minute Taoist meditation in his voice: smile into each organ, trade its emotion for its virtue, store the energy at the navel.","Journal · Aug 6, 2024"],["An Alan Watts talk set to music","Alan Watts","Sent by Peter to the group chat.","Journal · Jul 24, 2025"],["The Last Mimzy","Film","Assigned viewing on the call about symbol, myth and the child’s mind.","Journal · Jul 17, 2025"],["‘Let It Go’ from Frozen","Song","Played at sunrise on the solstice to ritualize surrender and ending.","Jun 18, 2025"]];
+(function(){const pal=['#E8735A','#D9A648','#7FD6A2','#8FB0F0','#AC9FF2','#E58BB0','#5FC0AE','#F5A066'];const g=document.getElementById('wiz-grid');if(!g)return;
+g.innerHTML=WIZ_SHELF.map(([t,a,l],i)=>'<a href="https://hagerca.github.io/the-wizard/#library" style="--s:'+pal[i%pal.length]+'"><i></i><div><b>'+esc(t)+'</b><small>'+esc(a)+'</small><span>'+esc(l)+'</span></div></a>').join('');})();
+/* WIZARD SHELF END */
 </script>
 </body>
 </html>
